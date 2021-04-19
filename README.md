@@ -1,7 +1,5 @@
-# vue3-bootstrap5-directives
+# Vue 3 Plugin for Bootstrap 5
 
-Vue Directives for Bootstrap
-
-Supported version is limited to: vue 3, bootstrap 5.
+Supported version is: Vue 3, Bootstrap 5.
 
 
