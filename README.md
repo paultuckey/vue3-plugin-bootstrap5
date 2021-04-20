@@ -51,3 +51,20 @@ With `<button v-vb-toggle:tooltip="'Hello World'" ...`
 See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
 
+# Access to raw Bootstrap JavaScript objects
+
+When `v-vb-is` is added to an element this plugin will add a `$vb` property to it with the raw Bootstrap
+object.
+
+```javascript
+
+    // use $vb like this:
+    this.$refs.modalExample.$vb.modal.hide()
+
+    // or when `v-vb-is` is used on the root element of a component:
+    this.$el.$vb.modal.hide()
+
+    // note, this is same as doing this:    
+    bootstrap.Modal.getInstance(this.$refs.modalExample).hide()
+
+```
