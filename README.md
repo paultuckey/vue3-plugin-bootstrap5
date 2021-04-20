@@ -23,26 +23,28 @@ app.use(createVbPlugin);
 
 ## Modal
 
-On the button replace the default Bootstrap attributes: 
+On the button replace the Bootstrap attributes
     `<button data-bs-toggle="modal" data-bs-target="#exampleModal" ...`
 
-With 
-    `<button v-vb-toggle:modal data-bs-target="#renameModal" ...`
-
-Or in the Vue way, pass the ref name `<button v-vb-toggle:modal="'renameModal'" ...`
+With `<button v-vb-toggle:modal data-bs-target="#exampleModal" ...`
 
 See [ModalExamples.vue](examples/basic/src/components/ModalExamples.vue)
 
 
 # Tooltip
 
-This `<button data-bs-toggle="tooltip" title="Hello World" ...`
+Replace this `<button data-bs-toggle="tooltip" title="Hello World" ...`
 
-to this: `<button v-vb-toggle:tooltip title="Hello World" ...`
+With `<button v-vb-toggle:tooltip="'Hello World'" ...`
 
 See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
 
 # Offcanvas
+
+On the button replace the Bootstrap attributes
+`<button data-bs-toggle="offcanvas" data-bs-target="#exampleOffcanvas" ...`
+
+With `<button v-vb-toggle:offcanvas data-bs-target="#exampleOffcanvas" ...`
 
 See [OffcanvasExamples.vue](examples/basic/src/components/OffcanvasExamples.vue)
