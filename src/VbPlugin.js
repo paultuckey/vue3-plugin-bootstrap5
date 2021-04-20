@@ -5,7 +5,7 @@ export { default as VbToast } from './VbToast';
 export { default as VbTooltip } from './VbTooltip';
 
 
-export function createVbPlugins(components) {
+export function createVbPlugin(components) {
     return {
 
         /**

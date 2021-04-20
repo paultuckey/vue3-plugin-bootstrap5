@@ -1,19 +1,20 @@
-# Vue 3 Plugins for Bootstrap 5
+# Vue 3 Plugin for Bootstrap 5
 
 Supported version is: Vue 3, Bootstrap 5.
 
 
-# ALPHA
+# ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA
 
 ## Install
 
 In your main.js:
 ```vue
 
-import { VbsModal } from "@paultuckey/vue3-bootstrap5-plugins";
+import { createVbPlugin, VbModal } from "vue3-plugin-bootstrap5";
 
-app.use(VbModal)
+const createVbPlugin = createVbPlugin({VbModal});
 
+app.use(createVbPlugin);
 ```
 
 
@@ -71,8 +72,7 @@ export default {
 
 # Tooltip
 
-This `<button data-bs-toggle="tooltip" title="Hello World"`
+This `<button data-bs-toggle="tooltip" title="Hello World" ...`
 
 to this: `<button v-vb-toggle:tooltip title="Hello World" ...`
-
 
