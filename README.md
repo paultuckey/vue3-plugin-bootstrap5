@@ -31,7 +31,7 @@ With
 
 Or in the Vue way, pass the ref name `<button v-vb-toggle:modal="'renameModal'" ...`
 
-See `example/src/components/ModalExamples.vue`
+See [ModalExamples.vue](examples/basic/src/components/ModalExamples.vue)
 
 
 # Tooltip
@@ -40,4 +40,9 @@ This `<button data-bs-toggle="tooltip" title="Hello World" ...`
 
 to this: `<button v-vb-toggle:tooltip title="Hello World" ...`
 
-See [TooltipExamples.vue](`https://github.com/paultuckey/vue3-plugin-bootstrap5/blob/main/examples/basic/src/components/TooltipExamples.vue`)
+See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
+
+
+# Offcanvas
+
+See [OffcanvasExamples.vue](examples/basic/src/components/OffcanvasExamples.vue)
