@@ -40,4 +40,4 @@ This `<button data-bs-toggle="tooltip" title="Hello World" ...`
 
 to this: `<button v-vb-toggle:tooltip title="Hello World" ...`
 
-See [TooltipExamples.vue](`./blob/main/examples/basic/src/components/TooltipExamples.vue`)
+See [TooltipExamples.vue](`blob/main/examples/basic/src/components/TooltipExamples.vue`)
