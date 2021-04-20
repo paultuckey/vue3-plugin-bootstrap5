@@ -36,7 +36,7 @@ export default {
             //console.log('modal toggle click', el, binding.value, el.dataset.vbTarget)
             let targetEl = null
             if (binding.value) {
-                targetEl = binding.instance.$refs[el.dataset.vbTarget]
+                targetEl = binding.instance.$refs[binding.value]
             } else if (el.dataset.vbTarget) {
                 targetEl = document.querySelector(el.dataset.vbTarget)
             }

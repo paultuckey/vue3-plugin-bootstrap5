@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { createVbPlugins, VbModal } from 'vue3-bootstrap5-plugins'
+import { createVbPlugin, VbModal, VbTooltip } from 'vue3-plugin-bootstrap5'
 
-let vbPlugins = createVbPlugins({VbModal})
+let vbPlugins = createVbPlugin({VbModal, VbTooltip})
 
 let app = createApp(App)
 

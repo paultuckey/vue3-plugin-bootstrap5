@@ -1,17 +1,17 @@
 {
     "name": "vue3-plugin-bootstrap5",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Vue 3 Plugin for Bootstrap 5",
-    "main": "dist/vb-plugin.umd.js",
+    "main": "dist/vb-plugin.cjs.js",
     "module": "dist/vb-plugin.esm.js",
-    "unpkg": "dist/vb-plugin.min.js",
+    "browser": "dist/vb-plugin.umd.js",
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "vue-cli-service serve --port=9000 examples/index.js",
         "build": "rollup -c"
-    },
-    "browser": {
-        "./sfc": "src/VbPlugin.js"
     },
     "publishConfig": {
         "access": "public"
@@ -36,17 +36,9 @@
     },
     "homepage": "https://github.com/paultuckey/vue3-plugin-bootstrap5#readme",
     "devDependencies": {
-        "@babel/core": "^7.13.8",
-        "@babel/preset-env": "^7.13.9",
-        "@rollup/plugin-node-resolve": "^11.2.0",
-        "@vue/cli-service": "^5.0.0-alpha.4",
-        "@vue/compiler-sfc": "^3.0.5",
-        "bootstrap": "^5.0.0-beta2",
-        "cross-env": "^7.0.3",
-        "rollup": "^2.40.0",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-postcss": "^4.0.0",
-        "rollup-plugin-vue": "^6.0.0-beta.10",
+        "@rollup/plugin-commonjs": "^11.0.1",
+        "@rollup/plugin-node-resolve": "^7.0.0",
+        "rollup": "^1.29.0",
         "vue": "^3.0.5"
     }
 }

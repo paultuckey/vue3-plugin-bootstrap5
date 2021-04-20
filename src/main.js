@@ -40,7 +40,7 @@ export function createVbPlugin(components) {
 
                     } else if (binding.arg === 'toast' && components.VbToast) {
                         handlerObjs.push({directiveType: 'is', el: el, arg: binding.arg,
-                            handlerIns: components.VbToast.createIsHandler(el, binding, vnode)})
+                            handlerIns: components.VbToast.createIsHandler(el, binding)})
 
                     }
                 },
@@ -62,7 +62,7 @@ export function createVbPlugin(components) {
 
                     } else if (binding.arg === 'tooltip' && components.VbTooltip) {
                         handlerObjs.push({directiveType: 'toggle', el: el, arg: binding.arg,
-                            handlerIns: components.VbTooltip.createToggleHandler(el, binding, vnode)})
+                            handlerIns: components.VbTooltip.createToggleHandler(el)})
                     }
                 },
                 beforeMount(el, binding) {
@@ -84,7 +84,7 @@ export function createVbPlugin(components) {
                         })
                     } else if (binding.arg === 'toast' && components.VbModal) {
                         handlerObjs.push({directiveType: 'dismiss', el: el, arg: binding.arg,
-                            handlerIns: components.VbToast.createDismissHandler(el, binding, vnode)})
+                            handlerIns: components.VbToast.createDismissHandler(el, binding)})
                     }
                 },
                 beforeMount(el, binding) {
