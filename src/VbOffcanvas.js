@@ -36,7 +36,8 @@ export default {
             //console.log('offcanvas toggle click', el, binding.value, el.dataset.bsTarget)
             let targetEl = null
             if (binding.value) {
-                targetEl = binding.instance.$refs[binding.value]
+                let refObj = binding.instance.$refs[binding.value]
+                targetEl = refObj && refObj.$el ? refObj.$el : refObj
             } else if (el.dataset.bsTarget) {
                 targetEl = document.querySelector(el.dataset.bsTarget)
             }
