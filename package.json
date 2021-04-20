@@ -1,6 +1,6 @@
 {
     "name": "vue3-plugin-bootstrap5",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Vue 3 Plugin for Bootstrap 5",
     "main": "dist/vb-plugin.cjs.js",
     "module": "dist/vb-plugin.esm.js",
@@ -40,5 +40,9 @@
         "@rollup/plugin-node-resolve": "^7.0.0",
         "rollup": "^1.29.0",
         "vue": "^3.0.5"
+    },
+    "peerDependencies": {
+        "bootstrap": "^5.0.0-beta1",
+        "vue": "^3.0.0"
     }
 }
