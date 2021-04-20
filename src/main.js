@@ -71,7 +71,7 @@ export function createVbPlugin(components) {
 
                     } else if (binding.arg === 'tooltip' && components.VbTooltip) {
                         handlerObjs.push({directiveType: 'toggle', el: el, arg: binding.arg,
-                            handlerIns: components.VbTooltip.createToggleHandler(el)})
+                            handlerIns: components.VbTooltip.createToggleHandler(el, binding)})
                     }
                 },
                 beforeMount(el, binding) {
