@@ -1,29 +1,29 @@
 
-import { Modal } from 'bootstrap'
+import { Offcanvas } from 'bootstrap'
 
 
 export default {
 
     createIsHandler(el, binding) {
-        //console.log('modal createIsHandler')
+        //console.log('offcanvas createIsHandler')
         return {
             beforeMount() {
-                //console.log('modal beforeMount', el)
-                if (el.classList && !el.classList.contains('modal')) el.classList.add('modal')
+                //console.log('offcanvas beforeMount', el)
+                if (el.classList && !el.classList.contains('offcanvas')) el.classList.add('offcanvas')
                 if (!el.$vb) el.$vb = {};
-                let ins = Modal.getInstance(el)
-                if (!ins) ins = new Modal(el, binding.value)
-                el.$vb.modal = ins
+                let ins = Offcanvas.getInstance(el)
+                if (!ins) ins = new Offcanvas(el, binding.value)
+                el.$vb.offcanvas = ins
             },
             updated() {
-                if (el.classList && !el.classList.contains('modal')) el.classList.add('modal')
-                let ins = Modal.getInstance(el)
+                if (el.classList && !el.classList.contains('offcanvas')) el.classList.add('offcanvas')
+                let ins = Offcanvas.getInstance(el)
                 if (ins) ins.handleUpdate()
             },
             beforeUnmount() {
-                let ins = Modal.getInstance(el)
+                let ins = Offcanvas.getInstance(el)
                 if (!ins) ins.dispose()
-                el.$vb.modal = undefined
+                el.$vb.offcanvas = undefined
             }
         }
     },
@@ -33,7 +33,7 @@ export default {
         let clickHandler = async function (e) {
             e.preventDefault()
             e.stopPropagation()
-            //console.log('modal toggle click', el, binding.value, el.dataset.bsTarget)
+            //console.log('offcanvas toggle click', el, binding.value, el.dataset.bsTarget)
             let targetEl = null
             if (binding.value) {
                 targetEl = binding.instance.$refs[binding.value]
@@ -41,13 +41,13 @@ export default {
                 targetEl = document.querySelector(el.dataset.bsTarget)
             }
             if (targetEl) {
-                let ins = Modal.getInstance(targetEl)
+                let ins = Offcanvas.getInstance(targetEl)
                 if (ins) ins.toggle(el)
             }
         }
         return {
             beforeMount() {
-                //console.log('modal toggle beforemount')
+                //console.log('offcanvas toggle beforemount')
                 el.addEventListener('click', clickHandler);
             },
             beforeUnmount() {
@@ -57,10 +57,10 @@ export default {
     },
 
     createDismissHandler(el, binding) {
-        let getParentModal = function(el) {
+        let getParentOffcanvas = function(el) {
             let currNode = el
             while (currNode) {
-                if (currNode && currNode.classList && currNode.classList.contains('modal')) {
+                if (currNode && currNode.classList && currNode.classList.contains('offcanvas')) {
                     break
                 }
                 currNode = currNode.parentNode
@@ -76,9 +76,9 @@ export default {
                 //console.log('allowedToClose', allowedToClose)
                 if (!allowedToClose) return
             }
-            let modalEl = getParentModal(e.target)
-            if (modalEl) {
-                let ins = Modal.getInstance(modalEl)
+            let offcanvasEl = getParentOffcanvas(e.target)
+            if (offcanvasEl) {
+                let ins = Offcanvas.getInstance(offcanvasEl)
                 if (ins) ins.hide();
             }
         }

@@ -27,7 +27,7 @@ On the button replace the default Bootstrap attributes:
     `<button data-bs-toggle="modal" data-bs-target="#exampleModal" ...`
 
 With 
-    `<button v-vb-toggle:modal v-vb-target="'#renameModal'" ...`
+    `<button v-vb-toggle:modal data-bs-target="#renameModal" ...`
 
 Or in the Vue way, pass the ref name `<button v-vb-toggle:modal="'renameModal'" ...`
 

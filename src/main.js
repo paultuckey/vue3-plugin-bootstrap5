@@ -3,6 +3,7 @@
 export { default as VbModal } from './VbModal';
 export { default as VbToast } from './VbToast';
 export { default as VbTooltip } from './VbTooltip';
+export { default as VbOffcanvas } from './VbOffcanvas';
 
 
 export function createVbPlugin(components) {
@@ -32,11 +33,15 @@ export function createVbPlugin(components) {
             }
 
             app.directive('vb-is', {
-                created(el, binding, vnode) {
+                created(el, binding) {
                     //console.log('is created', binding.arg, components)
                     if (binding.arg === 'modal' && components.VbModal) {
                         handlerObjs.push({directiveType: 'is', el: el, arg: binding.arg,
-                            handlerIns: components.VbModal.createIsHandler(el, binding, vnode)})
+                            handlerIns: components.VbModal.createIsHandler(el, binding)})
+
+                    } else if (binding.arg === 'offcanvas' && components.VbOffcanvas) {
+                        handlerObjs.push({directiveType: 'is', el: el, arg: binding.arg,
+                            handlerIns: components.VbOffcanvas.createIsHandler(el, binding)})
 
                     } else if (binding.arg === 'toast' && components.VbToast) {
                         handlerObjs.push({directiveType: 'is', el: el, arg: binding.arg,
@@ -55,10 +60,14 @@ export function createVbPlugin(components) {
             })
 
             app.directive('vb-toggle', {
-                created(el, binding, vnode) {
+                created(el, binding) {
                     if (binding.arg === 'modal' && components.VbModal) {
                         handlerObjs.push({directiveType: 'toggle', el: el, arg: binding.arg,
-                            handlerIns: components.VbModal.createToggleHandler(el, binding, vnode)})
+                            handlerIns: components.VbModal.createToggleHandler(el, binding)})
+
+                    } else if (binding.arg === 'offcanvas' && components.VbOffcanvas) {
+                        handlerObjs.push({directiveType: 'toggle', el: el, arg: binding.arg,
+                            handlerIns: components.VbOffcanvas.createToggleHandler(el, binding)})
 
                     } else if (binding.arg === 'tooltip' && components.VbTooltip) {
                         handlerObjs.push({directiveType: 'toggle', el: el, arg: binding.arg,
@@ -77,12 +86,17 @@ export function createVbPlugin(components) {
             })
 
             app.directive('vb-dismiss', {
-                created(el, binding, vnode) {
+                created(el, binding) {
                     if (binding.arg === 'modal' && components.VbModal) {
                         handlerObjs.push({directiveType: 'dismiss', el: el, arg: binding.arg,
-                            handlerIns: components.VbModal.createDismissHandler(el, binding, vnode)
+                            handlerIns: components.VbModal.createDismissHandler(el, binding)
                         })
-                    } else if (binding.arg === 'toast' && components.VbModal) {
+
+                    } else if (binding.arg === 'offcanvas' && components.VbOffcanvas) {
+                        handlerObjs.push({directiveType: 'dismiss', el: el, arg: binding.arg,
+                            handlerIns: components.VbOffcanvas.createDismissHandler(el, binding)})
+
+                    } else if (binding.arg === 'toast' && components.VbToast) {
                         handlerObjs.push({directiveType: 'dismiss', el: el, arg: binding.arg,
                             handlerIns: components.VbToast.createDismissHandler(el, binding)})
                     }
@@ -99,21 +113,6 @@ export function createVbPlugin(components) {
 
 
             // not specific to a bs type
-
-            app.directive('vb-target', {
-                created(el, binding) {
-                    el.dataset.vbTarget = binding.value
-                },
-                beforeMount(el, binding) {
-                    el.dataset.vbTarget = binding.value
-                },
-                updated(el, binding) {
-                    el.dataset.vbTarget = binding.value
-                },
-                beforeUnmount(el) {
-                    el.dataset.vbTarget = undefined
-                },
-            })
 
             app.directive('vb-on', {
                 beforeMount(el, binding) {

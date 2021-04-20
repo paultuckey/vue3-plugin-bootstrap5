@@ -35,7 +35,7 @@
           <h2>Modal via Selector</h2>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" v-vb-toggle:modal v-vb-target="'#exampleModalId'">
+          <button type="button" class="btn btn-primary" v-vb-toggle:modal data-bs-target="#exampleModalId">
               Launch demo modal
           </button>
 
