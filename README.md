@@ -62,7 +62,7 @@ See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
 # Access to raw Bootstrap JavaScript objects
 
-When `v-vb-is` is added to an element this plugin will assign the raw Bootstrap object(s) to `$vb` the property.
+When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap object(s) to `$vb` the property.
 
 ```javascript
 
