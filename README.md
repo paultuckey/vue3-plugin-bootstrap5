@@ -17,7 +17,7 @@ objects from Vue.
 npm install vue3-plugin-bootstrap5
 ```
 
-In your main.js:
+In your `main.js`:
 ```javascript
 
 import { createVbPlugin } from 'vue3-plugin-bootstrap5'
@@ -27,6 +27,8 @@ let vbPlugin = createVbPlugin({ Modal, Offcanvas, Tooltip })
 
 app.use(vbPlugin)
 ```
+
+See example [main.js](examples/basic/src/main.js)
 
 
 ## Modal
