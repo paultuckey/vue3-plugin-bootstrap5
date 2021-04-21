@@ -9,7 +9,7 @@ This is not intended to be a Bootstrap-Vue component library, but rather a plugi
 objects from Vue.
 
  - This library has zero dependencies (you inject Bootstrap yourself).
- - Supported version is: Vue 3.*.* and Bootstrap 5.*.*
+ - Supports Vue 3.x and Bootstrap 5.x
 
 ## Install
 
