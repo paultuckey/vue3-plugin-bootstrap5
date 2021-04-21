@@ -69,10 +69,10 @@ When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap
     // when `v-vb-is` is used on an element, add a ref (eg ref="exampleEl") then use $vb like this:
     this.$refs.exampleEl.$vb.modal.hide()
 
-    // or if `v-vb-is` is used on the root element of a component use $vb like this:
-    this.$el.$vb.modal.hide()
-
     // note, this is same as doing this:    
     bootstrap.Modal.getInstance(this.$refs.exampleEl).hide()
+
+    // if `v-vb-is` is used on the root element of a component use $vb like this:
+    this.$el.$vb.modal.hide()
 
 ```
