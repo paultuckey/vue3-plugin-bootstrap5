@@ -1,10 +1,7 @@
 
-import { Modal } from 'bootstrap'
-
-
 export default {
 
-    createIsHandler(el, binding) {
+    createIsHandler(Modal, el, binding) {
         //console.log('modal createIsHandler')
         return {
             beforeMount() {
@@ -28,7 +25,7 @@ export default {
         }
     },
 
-    createToggleHandler(el, binding) {
+    createToggleHandler(Modal, el, binding) {
         //console.log('createToggleHandler', el, binding)
         let clickHandler = async function (e) {
             e.preventDefault()
@@ -57,7 +54,7 @@ export default {
         }
     },
 
-    createDismissHandler(el, binding) {
+    createDismissHandler(Modal, el, binding) {
         let getParentModal = function(el) {
             let currNode = el
             while (currNode) {

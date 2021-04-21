@@ -1,24 +1,31 @@
 # Vue 3 Plugin for Bootstrap 5
 
-Supported version is: Vue 3, Bootstrap 5.
-
-
 # ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA
 
 This plugin is designed to add directives to Vue 3 that can be used to create and control Bootstrap 5 JavaScript 
 objects.
 
+This is not intended to be a Bootstrap-Vue component library, but rather a plugin to allow easier control of Bootstrap
+objects from Vue.
+
+ - This library has zero dependencies (you inject Bootstrap yourself).
+ - Supported version is: Vue 3.*.* and Bootstrap 5.*.*
+
 ## Install
+
+```shell
+npm install vue3-plugin-bootstrap5
+```
 
 In your main.js:
 ```javascript
 
-import { createVbPlugin, VbModal, VbOffcanvas, VbTooltip } from "vue3-plugin-bootstrap5"
+import { createVbPlugin } from 'vue3-plugin-bootstrap5'
+import { Modal, Offcanvas, Tooltip } from 'bootstrap'
 
-const createVbPlugin = createVbPlugin({ VbModal, VbOffcanvas, VbTooltip })
+let vbPlugin = createVbPlugin({ Modal, Offcanvas, Tooltip })
 
-app.use(createVbPlugin)
-
+app.use(vbPlugin)
 ```
 
 

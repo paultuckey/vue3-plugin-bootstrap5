@@ -1,6 +1,6 @@
 {
     "name": "vue3-plugin-bootstrap5",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "Vue 3 Plugin for Bootstrap 5",
     "main": "dist/vb-plugin.cjs.js",
     "module": "dist/vb-plugin.esm.js",

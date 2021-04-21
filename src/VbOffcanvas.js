@@ -1,10 +1,8 @@
 
-import { Offcanvas } from 'bootstrap'
-
 
 export default {
 
-    createIsHandler(el, binding) {
+    createIsHandler(Offcanvas, el, binding) {
         //console.log('offcanvas createIsHandler')
         return {
             beforeMount() {
@@ -28,7 +26,7 @@ export default {
         }
     },
 
-    createToggleHandler(el, binding) {
+    createToggleHandler(Offcanvas, el, binding) {
         //console.log('createToggleHandler', el, binding)
         let clickHandler = async function (e) {
             e.preventDefault()
@@ -57,7 +55,7 @@ export default {
         }
     },
 
-    createDismissHandler(el, binding) {
+    createDismissHandler(Offcanvas, el, binding) {
         let getParentOffcanvas = function(el) {
             let currNode = el
             while (currNode) {

@@ -1,8 +1,7 @@
-import {Tooltip} from "bootstrap";
 
 export default {
 
-    createToggleHandler(el, binding) {
+    createToggleHandler(Tooltip, el, binding) {
         //console.log('modal createToggleHandler', el)
         return {
             beforeMount() {

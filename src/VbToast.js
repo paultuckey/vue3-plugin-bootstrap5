@@ -1,8 +1,7 @@
 
-import {Toast} from 'bootstrap'
 
 export default {
-    createIsHandler(el, binding) {
+    createIsHandler(Toast, el, binding) {
         console.log('toast createIsHandler', el, binding)
         return {
             beforeMount() {
@@ -22,7 +21,7 @@ export default {
         }
     },
 
-    createDismissHandler(el, binding) {
+    createDismissHandler(Toast, el, binding) {
         console.log('toast createIsHandler', el, binding)
         let getParentToast = function(el) {
             let currNode = el
