@@ -11,7 +11,7 @@
     "bootstrap": "^5.0.0-beta3",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
-    "vue3-plugin-bootstrap5": "~0.0.12"
+    "vue3-plugin-bootstrap5": "~0.0.13"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
