@@ -33,10 +33,16 @@ See example [main.js](examples/basic/src/main.js)
 
 # Bootstrap Components in Vue
 
+## Alerts
 
-## Alert
+Add `v-vb-is:alert` to your alert element.
 
-TODO
+On close buttons replace `data-bs-dismiss="alert"` with `v-vb-dismiss:alert`
+
+Listen for events on your alert element with: `v-vb-on:close.bs.alert="someMethod""` and `v-vb-on:closed.bs.alert="someMethod"`
+
+See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
+
 
 
 ## Carousel
@@ -49,7 +55,7 @@ TODO
 TODO
 
 
-## Dropdown
+## Dropdowns
 
 TODO
 

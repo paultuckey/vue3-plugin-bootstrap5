@@ -1,8 +1,9 @@
 <template>
     <div class="container">
         <h1>Examples for Vue3 Plugin for Bootstrap 5</h1>
-        <ModalExamples />
+        <AlertExamples />
         <OffcanvasExamples />
+        <ModalExamples />
         <TooltipExamples />
     </div>
 </template>
@@ -11,15 +12,17 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import ModalExamples from './components/ModalExamples.vue'
+import AlertExamples from './components/AlertExamples.vue'
 import OffcanvasExamples from "./components/OffcanvasExamples.vue";
+import ModalExamples from './components/ModalExamples.vue'
 import TooltipExamples from "./components/TooltipExamples.vue";
 
 export default {
   name: 'App',
   components: {
-      ModalExamples,
+      AlertExamples,
       OffcanvasExamples,
+      ModalExamples,
       TooltipExamples
   }
 }

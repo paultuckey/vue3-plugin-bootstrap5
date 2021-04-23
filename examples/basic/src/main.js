@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createVbPlugin } from 'vue3-plugin-bootstrap5'
-import { Modal, Offcanvas, Tooltip } from 'bootstrap'
+import { Alert, Offcanvas, Modal, Tooltip } from 'bootstrap'
 
-let vbPlugin = createVbPlugin({ Modal, Offcanvas, Tooltip })
+let vbPlugin = createVbPlugin({ Alert, Offcanvas, Modal, Tooltip })
 
 let app = createApp(App)
 

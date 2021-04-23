@@ -1,16 +1,16 @@
 
 
-// todo: Alert
+import VbAlert from './VbAlert'
 // todo: Carousel
 // todo: Collapse
 // todo: Dropdown
+import VbOffcanvas from './VbOffcanvas';
 import VbModal from './VbModal';
-// todo: Tab (Listgroup, Navs)
 // todo: Popover
 // todo: ScrollSpy
+// todo: Tab (Listgroup, Navs)
 import VbToast from './VbToast';
 import VbTooltip from './VbTooltip';
-import VbOffcanvas from './VbOffcanvas';
 
 
 export function createVbPlugin(bootstrapObjects) {
@@ -25,8 +25,9 @@ export function createVbPlugin(bootstrapObjects) {
             //console.log('createVbPlugins install', app)
             if (!bootstrapObjects) bootstrapObjects = {}
             let handlerConfs = {
-                modal: { bsObject: bootstrapObjects.Modal, handlerObject: VbModal },
+                alert: { bsObject: bootstrapObjects.Alert, handlerObject: VbAlert },
                 offcanvas: { bsObject: bootstrapObjects.Offcanvas, handlerObject: VbOffcanvas },
+                modal: { bsObject: bootstrapObjects.Modal, handlerObject: VbModal },
                 toast: { bsObject: bootstrapObjects.Toast, handlerObject: VbToast },
                 tooltip: { bsObject: bootstrapObjects.Tooltip, handlerObject: VbTooltip }
             }
