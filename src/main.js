@@ -1,7 +1,7 @@
 
 
 import VbAlert from './VbAlert'
-// todo: Carousel
+import VbCarousel from './VbCarousel'
 // todo: Collapse
 // todo: Dropdown
 import VbOffcanvas from './VbOffcanvas';
@@ -26,6 +26,7 @@ export function createVbPlugin(bootstrapObjects) {
             if (!bootstrapObjects) bootstrapObjects = {}
             let handlerConfs = {
                 alert: { bsObject: bootstrapObjects.Alert, handlerObject: VbAlert },
+                carousel: { bsObject: bootstrapObjects.Carousel, handlerObject: VbCarousel },
                 offcanvas: { bsObject: bootstrapObjects.Offcanvas, handlerObject: VbOffcanvas },
                 modal: { bsObject: bootstrapObjects.Modal, handlerObject: VbModal },
                 toast: { bsObject: bootstrapObjects.Toast, handlerObject: VbToast },

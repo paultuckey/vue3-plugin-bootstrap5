@@ -39,7 +39,8 @@ Add `v-vb-is:alert` to your alert element.
 
 On close buttons replace `data-bs-dismiss="alert"` with `v-vb-dismiss:alert`
 
-Listen for events on your alert element with: `v-vb-on:close.bs.alert="someMethod""` and `v-vb-on:closed.bs.alert="someMethod"`
+Listen for events on your alert element with: `v-vb-on:close.bs.alert="someMethod"` and 
+`v-vb-on:closed.bs.alert="someMethod"`.
 
 See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
 
@@ -47,7 +48,13 @@ See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
 
 ## Carousel
 
-TODO
+Add `v-vb-is:carousel` to your alert element.
+
+Specify as normal: `data-bs-target`, `data-bs-ride`, `data-bs-slide`, `data-bs-slide-to`, `data-bs-interval`, 
+`data-bs-touch`.
+
+Listen for events on your carousel element with: `v-vb-on:slide.bs.carousel="someMethod"` and 
+`v-vb-on:slide.bs.carousel="someMethod"`.
 
 
 ## Collapse
