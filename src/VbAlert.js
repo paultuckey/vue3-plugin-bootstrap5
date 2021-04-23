@@ -45,7 +45,7 @@ export default {
             let alertEl = getParentAlert(e.target)
             if (alertEl) {
                 let ins = Alert.getInstance(alertEl)
-                if (ins) ins.hide();
+                if (ins) ins.close();
             }
         }
         return {
