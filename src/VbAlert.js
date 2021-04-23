@@ -2,7 +2,7 @@
 
 export default {
     createIsHandler(Alert, el, binding) {
-        console.log('alert createIsHandler', el, binding)
+        //console.log('alert createIsHandler', el, binding)
         return {
             beforeMount() {
                 if (el.classList && !el.classList.contains('alert')) el.classList.add('alert')
@@ -22,7 +22,7 @@ export default {
     },
 
     createDismissHandler(Alert, el, binding) {
-        console.log('alert createIsHandler', el, binding)
+        //console.log('alert createIsHandler', el, binding)
         let getParentAlert = function(el) {
             let currNode = el
             while (currNode) {

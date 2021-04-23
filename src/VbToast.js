@@ -2,7 +2,7 @@
 
 export default {
     createIsHandler(Toast, el, binding) {
-        console.log('toast createIsHandler', el, binding)
+        //console.log('toast createIsHandler', el, binding)
         return {
             beforeMount() {
                 if (el.classList && !el.classList.contains('toast')) el.classList.add('toast')
@@ -22,7 +22,7 @@ export default {
     },
 
     createDismissHandler(Toast, el, binding) {
-        console.log('toast createIsHandler', el, binding)
+        //console.log('toast createDismissHandler', el, binding)
         let getParentToast = function(el) {
             let currNode = el
             while (currNode) {
