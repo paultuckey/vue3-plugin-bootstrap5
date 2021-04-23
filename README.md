@@ -31,6 +31,29 @@ app.use(vbPlugin)
 See example [main.js](examples/basic/src/main.js)
 
 
+# Bootstrap Components in Vue
+
+
+## Alert
+
+TODO
+
+
+## Carousel
+
+TODO
+
+
+## Collapse
+
+TODO
+
+
+## Dropdown
+
+TODO
+
+
 ## Modal
 
 On the button replace the Bootstrap attributes
@@ -41,7 +64,7 @@ With `<button v-vb-toggle:modal data-bs-target="#exampleModal" ...`
 See [ModalExamples.vue](examples/basic/src/components/ModalExamples.vue)
 
 
-# Offcanvas
+## Offcanvas
 
 On the button replace the Bootstrap attributes
 `<button data-bs-toggle="offcanvas" data-bs-target="#exampleOffcanvas" ...`
@@ -51,7 +74,27 @@ With `<button v-vb-toggle:offcanvas data-bs-target="#exampleOffcanvas" ...`
 See [OffcanvasExamples.vue](examples/basic/src/components/OffcanvasExamples.vue)
 
 
-# Tooltip
+## Popover
+
+TODO
+
+
+## ScrollSpy
+
+TODO
+
+
+## Tab (Listgroup, Navs)
+
+TODO
+
+
+## Toast
+
+TODO
+
+
+## Tooltip
 
 Replace this `<button data-bs-toggle="tooltip" title="Hello World" ...`
 
@@ -60,7 +103,9 @@ With `<button v-vb-toggle:tooltip="'Hello World'" ...`
 See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
 
-# Access to raw Bootstrap JavaScript objects
+# General
+
+## Bootstrap JavaScript Objects
 
 When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap object(s) to `$vb` the property.
 
@@ -76,3 +121,27 @@ When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap
     this.$el.$vb.modal.hide()
 
 ```
+
+
+## Events
+
+Are added to an element using `v-vb-on:[eventName]="methodToCall""`.  Your method will be called by bootstrap when the 
+event it triggered by Bootstrap.
+
+```html
+<div ref="exampleModalEvents" 
+     v-vb-is:modal 
+     v-vb-on:hidden.bs.modal="modalHiddenMethod">...</div>
+ ```
+
+All bootstrap events are supported (so long as `v-vb-on:` is specified the same element as `v-vb-is:`).  See bootstrap 
+documentation for the full list for each component:
+
+  - [Alerts Events](https://getbootstrap.com/docs/5.0/components/alerts/#events)
+  - [Carousel Events](https://getbootstrap.com/docs/5.0/components/carousel/#events)
+  - [Collapse Events](https://getbootstrap.com/docs/5.0/components/collapse/#events)
+  - [Dropdowns Events](https://getbootstrap.com/docs/5.0/components/dropdowns/#events)
+  - [List Group Events](https://getbootstrap.com/docs/5.0/components/list-group/#events)
+  - [Modal Events](https://getbootstrap.com/docs/5.0/components/modal/#events)
+  - [Navs & Tabs Events](https://getbootstrap.com/docs/5.0/components/navs-tabs/#events)
+  - [Offcanvas Events](https://getbootstrap.com/docs/5.0/components/offcanvas/#events)
