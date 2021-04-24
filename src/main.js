@@ -113,6 +113,44 @@ export function createVbPlugin(bootstrapObjects) {
                 }
             })
 
+            app.directive('vb-slide', {
+                created(el, binding) {
+                    let handlerConf = handlerConfs[binding.arg]
+                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
+                        handlerConf.handlerObject.createSlideHandler) {
+                        let handlerFn = handlerConf.handlerObject.createSlideHandler(handlerConf.bsObject, el, binding)
+                        addHandler('slide', el, binding, handlerFn)
+                    }
+                },
+                beforeMount(el, binding) {
+                    let handler = getHandler('slide', el, binding, false)
+                    if (handler) handler.handlerIns.beforeMount()
+                },
+                beforeUnmount(el, binding) {
+                    let handler = getHandler('slide', el, binding, true)
+                    if (handler) handler.handlerIns.beforeUnmount()
+                }
+            })
+
+            app.directive('vb-slide-to', {
+                created(el, binding) {
+                    let handlerConf = handlerConfs[binding.arg]
+                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
+                        handlerConf.handlerObject.createSlideToHandler) {
+                        let handlerFn = handlerConf.handlerObject.createSlideToHandler(handlerConf.bsObject, el, binding)
+                        addHandler('slide-to', el, binding, handlerFn)
+                    }
+                },
+                beforeMount(el, binding) {
+                    let handler = getHandler('slide-to', el, binding, false)
+                    if (handler) handler.handlerIns.beforeMount()
+                },
+                beforeUnmount(el, binding) {
+                    let handler = getHandler('slide-to', el, binding, true)
+                    if (handler) handler.handlerIns.beforeUnmount()
+                }
+            })
+
 
             // not specific to a bs type
 
