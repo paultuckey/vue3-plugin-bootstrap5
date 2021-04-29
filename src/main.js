@@ -2,13 +2,13 @@
 
 import VbAlert from './VbAlert'
 import VbCarousel from './VbCarousel'
-// todo: Collapse
-// todo: Dropdown
-import VbOffcanvas from './VbOffcanvas';
+import VbCollapse from './VbCollapse'
+import VbDropdown from './VbDropdown'
 import VbModal from './VbModal';
-// todo: Popover
-// todo: ScrollSpy
-// todo: Tab (Listgroup, Navs)
+import VbOffcanvas from './VbOffcanvas';
+import VbPopover from './VbPopover';
+import VbScrollSpy from './VbScrollSpy'
+import VbTab from './VbTab'
 import VbToast from './VbToast';
 import VbTooltip from './VbTooltip';
 
@@ -27,8 +27,15 @@ export function createVbPlugin(bootstrapObjects) {
             let handlerConfs = {
                 alert: { bsObject: bootstrapObjects.Alert, handlerObject: VbAlert },
                 carousel: { bsObject: bootstrapObjects.Carousel, handlerObject: VbCarousel },
-                offcanvas: { bsObject: bootstrapObjects.Offcanvas, handlerObject: VbOffcanvas },
+                collapse: { bsObject: bootstrapObjects.Collapse, handlerObject: VbCollapse },
+                dropdown: { bsObject: bootstrapObjects.Dropdown, handlerObject: VbDropdown },
                 modal: { bsObject: bootstrapObjects.Modal, handlerObject: VbModal },
+                offcanvas: { bsObject: bootstrapObjects.Offcanvas, handlerObject: VbOffcanvas },
+                popover: { bsObject: bootstrapObjects.Popover, handlerObject: VbPopover },
+                scrollspy: { bsObject: bootstrapObjects.ScrollSpy, handlerObject: VbScrollSpy },
+                tab: { bsObject: bootstrapObjects.Tab, handlerObject: VbTab },
+                pill: { bsObject: bootstrapObjects.Tab, handlerObject: VbTab }, // special case for tab
+                list: { bsObject: bootstrapObjects.Tab, handlerObject: VbTab }, // special case for tab
                 toast: { bsObject: bootstrapObjects.Toast, handlerObject: VbToast },
                 tooltip: { bsObject: bootstrapObjects.Tooltip, handlerObject: VbTooltip }
             }
@@ -47,10 +54,10 @@ export function createVbPlugin(bootstrapObjects) {
                 }
                 return null
             }
-            let addHandler = function(directiveType, el, binding, handlerFn) {
+            let addHandler = function(directiveType, el, binding, handlerIns) {
                 handlerObjs.push({
                     directiveType: directiveType, el: el, arg: binding.arg,
-                    handlerIns: handlerFn
+                    handlerIns: handlerIns
                 })
             }
 
@@ -60,8 +67,8 @@ export function createVbPlugin(bootstrapObjects) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
                         handlerConf.handlerObject.createIsHandler) {
-                        let handlerFn = handlerConf.handlerObject.createIsHandler(handlerConf.bsObject, el, binding)
-                        addHandler('is', el, binding, handlerFn)
+                        let handlerIns = handlerConf.handlerObject.createIsHandler(handlerConf.bsObject, el, binding)
+                        addHandler('is', el, binding, handlerIns)
                     }
                 },
                 beforeMount(el, binding) {
@@ -78,9 +85,9 @@ export function createVbPlugin(bootstrapObjects) {
                 created(el, binding) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
-                        handlerConf.handlerObject.createToggleHandler) {
-                        let handlerFn = handlerConf.handlerObject.createToggleHandler(handlerConf.bsObject, el, binding)
-                        addHandler('toggle', el, binding, handlerFn)
+                            handlerConf.handlerObject.createToggleHandler) {
+                        let handlerIns = handlerConf.handlerObject.createToggleHandler(handlerConf.bsObject, el, binding)
+                        addHandler('toggle', el, binding, handlerIns)
                     }
                 },
                 beforeMount(el, binding) {
@@ -99,8 +106,8 @@ export function createVbPlugin(bootstrapObjects) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
                         handlerConf.handlerObject.createDismissHandler) {
-                        let handlerFn = handlerConf.handlerObject.createDismissHandler(handlerConf.bsObject, el, binding)
-                        addHandler('dismiss', el, binding, handlerFn)
+                        let handlerIns = handlerConf.handlerObject.createDismissHandler(handlerConf.bsObject, el, binding)
+                        addHandler('dismiss', el, binding, handlerIns)
                     }
                 },
                 beforeMount(el, binding) {
@@ -118,8 +125,8 @@ export function createVbPlugin(bootstrapObjects) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
                         handlerConf.handlerObject.createSlideHandler) {
-                        let handlerFn = handlerConf.handlerObject.createSlideHandler(handlerConf.bsObject, el, binding)
-                        addHandler('slide', el, binding, handlerFn)
+                        let handlerIns = handlerConf.handlerObject.createSlideHandler(handlerConf.bsObject, el, binding)
+                        addHandler('slide', el, binding, handlerIns)
                     }
                 },
                 beforeMount(el, binding) {
@@ -137,8 +144,8 @@ export function createVbPlugin(bootstrapObjects) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
                         handlerConf.handlerObject.createSlideToHandler) {
-                        let handlerFn = handlerConf.handlerObject.createSlideToHandler(handlerConf.bsObject, el, binding)
-                        addHandler('slide-to', el, binding, handlerFn)
+                        let handlerIns = handlerConf.handlerObject.createSlideToHandler(handlerConf.bsObject, el, binding)
+                        addHandler('slide-to', el, binding, handlerIns)
                     }
                 },
                 beforeMount(el, binding) {
@@ -151,6 +158,24 @@ export function createVbPlugin(bootstrapObjects) {
                 }
             })
 
+            app.directive('vb-spy', {
+                created(el, binding) {
+                    let handlerConf = handlerConfs[binding.arg]
+                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
+                            handlerConf.handlerObject.createSlideToHandler) {
+                        let handlerIns = handlerConf.handlerObject.createSpyHandler(handlerConf.bsObject, el, binding)
+                        addHandler('scrollspy', el, binding, handlerIns)
+                    }
+                },
+                beforeMount(el, binding) {
+                    let handler = getHandler('scrollspy', el, binding, false)
+                    if (handler) handler.handlerIns.beforeMount()
+                },
+                beforeUnmount(el, binding) {
+                    let handler = getHandler('scrollspy', el, binding, true)
+                    if (handler) handler.handlerIns.beforeUnmount()
+                }
+            })
 
             // not specific to a bs type
 

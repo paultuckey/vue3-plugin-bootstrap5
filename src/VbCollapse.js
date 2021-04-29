@@ -1,32 +1,34 @@
 
 
 export default {
-    createIsHandler(Alert, el, binding) {
-        //console.log('alert createIsHandler', el, binding)
+
+    createIsHandler(Collapse, el, binding) {
+        //console.log('collapse createIsHandler')
         return {
             beforeMount() {
-                if (el.classList && !el.classList.contains('alert')) el.classList.add('alert')
+                //console.log('collapse beforeMount', el)
+                if (el.classList && !el.classList.contains('collapse')) el.classList.add('collapse')
                 if (!el.$vb) el.$vb = {};
-                let ins = Alert.getInstance(el)
-                if (!ins) ins = new Alert(el, binding.value)
-                el.$vb.alert = ins
+                let ins = Collapse.getInstance(el)
+                if (!ins) ins = new Collapse(el, binding.value)
+                el.$vb.collapse = ins
             },
             updated() {
-                if (el.classList && !el.classList.contains('alert')) el.classList.add('alert')
+                if (el.classList && !el.classList.contains('collapse')) el.classList.add('collapse')
             },
             beforeUnmount() {
-                let ins = Alert.getInstance(el)
-                if (ins) ins.dispose()
+                let ins = Collapse.getInstance(el)
+                if (!ins) ins.dispose()
+                el.$vb.collapse = undefined
             }
         }
     },
 
-    createDismissHandler(Alert, el, binding) {
-        //console.log('alert createIsHandler', el, binding)
-        let getParentAlert = function(el) {
+    createDismissHandler(Collapse, el, binding) {
+        let getParentCollapse = function(el) {
             let currNode = el
             while (currNode) {
-                if (currNode && currNode.classList && currNode.classList.contains('alert')) {
+                if (currNode && currNode.classList && currNode.classList.contains('collapse')) {
                     break
                 }
                 currNode = currNode.parentNode
@@ -42,10 +44,10 @@ export default {
                 //console.log('allowedToClose', allowedToClose)
                 if (!allowedToClose) return
             }
-            let alertEl = getParentAlert(e.target)
-            if (alertEl) {
-                let ins = Alert.getInstance(alertEl)
-                if (ins) ins.close();
+            let collapseEl = getParentCollapse(e.target)
+            if (collapseEl) {
+                let ins = Collapse.getInstance(collapseEl)
+                if (ins) ins.hide();
             }
         }
         return {
@@ -57,6 +59,7 @@ export default {
             }
         }
     }
-}
 
+
+}
 

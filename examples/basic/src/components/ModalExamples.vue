@@ -92,6 +92,49 @@
           </div>
       </div>
 
+      <div class="mb-4">
+          <h2>Modal Layering</h2>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModalLayering'">
+              Launch demo modal
+          </button>
+
+          <!-- Modal -->
+          <div ref="exampleModalLayering" v-vb-is:modal
+               class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabelLayering" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabelLayering">Modal Layer 1</h5>
+                          <button type="button" class="btn-close" v-vb-dismiss:modal aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">...</div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" v-vb-dismiss:modal>Close</button>
+                          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModalLayering2'">Open Another Modal</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div ref="exampleModalLayering2" v-vb-is:modal
+               class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabelLayering2" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabelLayering2">Modal Layer 2</h5>
+                          <button type="button" class="btn-close" v-vb-dismiss:modal aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">...</div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" v-vb-dismiss:modal>Close</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
   </div>
 </template>
 
