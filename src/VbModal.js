@@ -1,15 +1,14 @@
 
 export default {
 
-    createIsHandler(Modal, el, binding) {
+    createIsHandler(Modal, el, binding, baseOptions) {
         //console.log('modal createIsHandler')
 
         // bootstrap by default doesn't allow layering of modals, fix this when modal is shown by adjusting the zindex
         // of each new modal and it's backdrop
-        let baseZindex = 1060;
         let backdropFix = function() {
-            let modalsVisible = document.querySelectorAll('.modal[style*="display:block"]')
-            let zIndex = baseZindex + (10 * modalsVisible.length);
+            let modalsVisible = document.querySelectorAll('.modal')
+            let zIndex = baseOptions.vbModalBaseZindex + (10 * modalsVisible.length);
             el.style.zIndex = String(zIndex);
             setTimeout(function() {
                 let bdEl = document.querySelector('.modal-backdrop:not(.vb-modal-stack)')
@@ -27,7 +26,6 @@ export default {
                 if (!el.$vb) el.$vb = {};
                 let ins = Modal.getInstance(el)
                 if (!ins) ins = new Modal(el, binding.value)
-                if (binding.value && binding.value.vbBaseZindex) baseZindex = binding.value.vbBaseZindex
                 el.$vb.modal = ins
                 el.addEventListener('shown.bs.modal', backdropFix)
             },

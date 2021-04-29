@@ -13,7 +13,7 @@ import VbToast from './VbToast';
 import VbTooltip from './VbTooltip';
 
 
-export function createVbPlugin(bootstrapObjects) {
+export function createVbPlugin(bootstrapObjects, options) {
     return {
 
         /**
@@ -24,6 +24,10 @@ export function createVbPlugin(bootstrapObjects) {
         install(app) {
             //console.log('createVbPlugins install', app)
             if (!bootstrapObjects) bootstrapObjects = {}
+            let baseOptions = Object.assign({
+                vbModalBaseZindex: 1060  // same as $zindex-modal in https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+            }, options)
+
             let handlerConfs = {
                 alert: { bsObject: bootstrapObjects.Alert, handlerObject: VbAlert },
                 carousel: { bsObject: bootstrapObjects.Carousel, handlerObject: VbCarousel },
@@ -67,7 +71,7 @@ export function createVbPlugin(bootstrapObjects) {
                     let handlerConf = handlerConfs[binding.arg]
                     if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
                         handlerConf.handlerObject.createIsHandler) {
-                        let handlerIns = handlerConf.handlerObject.createIsHandler(handlerConf.bsObject, el, binding)
+                        let handlerIns = handlerConf.handlerObject.createIsHandler(handlerConf.bsObject, el, binding, baseOptions)
                         addHandler('is', el, binding, handlerIns)
                     }
                 },
