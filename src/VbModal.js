@@ -27,7 +27,7 @@ export default {
                 let ins = Modal.getInstance(el)
                 if (!ins) ins = new Modal(el, binding.value)
                 el.$vb.modal = ins
-                el.addEventListener('shown.bs.modal', backdropFix)
+                el.addEventListener('show.bs.modal', backdropFix)
             },
             updated() {
                 if (el.classList && !el.classList.contains('modal')) el.classList.add('modal')
@@ -35,7 +35,7 @@ export default {
                 if (ins) ins.handleUpdate()
             },
             beforeUnmount() {
-                el.removeEventListener('shown.bs.modal', backdropFix)
+                el.removeEventListener('show.bs.modal', backdropFix)
                 let ins = Modal.getInstance(el)
                 if (!ins) ins.dispose()
                 el.$vb.modal = undefined
