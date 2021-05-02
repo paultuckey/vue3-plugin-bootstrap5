@@ -15,12 +15,10 @@ export default {
             },
             updated() {
                 if (el.classList && !el.classList.contains('offcanvas')) el.classList.add('offcanvas')
-                let ins = Offcanvas.getInstance(el)
-                if (ins) ins.handleUpdate()
             },
             beforeUnmount() {
                 let ins = Offcanvas.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.offcanvas = undefined
             }
         }

@@ -18,7 +18,7 @@ export default {
             },
             beforeUnmount() {
                 let ins = Collapse.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.collapse = undefined
             }
         }

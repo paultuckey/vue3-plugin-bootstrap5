@@ -20,7 +20,7 @@ export default {
             },
             beforeUnmount() {
                 let ins = Dropdown.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.dropdown = undefined
             }
         }

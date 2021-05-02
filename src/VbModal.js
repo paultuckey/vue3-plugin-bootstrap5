@@ -37,7 +37,7 @@ export default {
             beforeUnmount() {
                 el.removeEventListener('show.bs.modal', backdropFix)
                 let ins = Modal.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.modal = undefined
             }
         }

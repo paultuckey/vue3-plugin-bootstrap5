@@ -20,7 +20,7 @@ export default {
             },
             beforeUnmount() {
                 let ins = Popover.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.popover = undefined
             }
         }

@@ -18,7 +18,7 @@ export default {
             },
             beforeUnmount() {
                 let ins = Carousel.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.carousel = undefined
             }
         }

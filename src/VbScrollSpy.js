@@ -18,7 +18,7 @@ export default {
             },
             beforeUnmount() {
                 let ins = ScrollSpy.getInstance(el)
-                if (!ins) ins.dispose()
+                if (ins) ins.dispose()
                 el.$vb.scrollspy = undefined
             }
         }
@@ -41,7 +41,7 @@ export default {
                 },
                 beforeUnmount() {
                     let ins = ScrollSpy.getInstance(el)
-                    if (!ins) ins.dispose()
+                    if (ins) ins.dispose()
                     el.$vb.scrollspy = undefined
                 }
             }

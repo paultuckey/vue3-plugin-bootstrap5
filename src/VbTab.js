@@ -36,7 +36,7 @@ export default {
             }
             if (targetEl) {
                 let ins = Tab.getInstance(targetEl)
-                if (ins) ins.toggle(el)
+                if (ins) ins.toggle(el)  // todo: toggle not defined in bs source
             }
         }
         return {
