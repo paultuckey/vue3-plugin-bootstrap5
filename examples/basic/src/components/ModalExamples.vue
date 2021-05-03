@@ -142,16 +142,31 @@
 
       </div>
 
+      <div class="mb-4">
+          <h2>Modal as a Vue Component</h2>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" @click.prevent="example4ShowModal()">
+              Launch demo modal
+          </button>
+          <ModalExamples4ModalComp v-if="modalExample4IsShown"
+                @close-modal="modalExample4IsShown=false"></ModalExamples4ModalComp>
+      </div>
+
   </div>
 </template>
 
 <script>
 
+import ModalExamples4ModalComp from "./ModalExamples4ModalComp";
+
 export default {
     name: 'ModalExamples',
+    components: {ModalExamples4ModalComp},
     data() {
         return {
-            example3PreventModalClosing: false
+            example3PreventModalClosing: false,
+            modalExample4IsShown: false
         }
     },
     methods: {
@@ -184,6 +199,10 @@ export default {
                 this.$refs.exampleModal3.$vb.modal.hide();
             }, 5000);
         },
+
+        example4ShowModal() {
+            this.modalExample4IsShown = true;
+        }
 
     },
 }

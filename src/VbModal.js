@@ -11,11 +11,14 @@ export default {
             let zIndex = baseOptions.vbModalBaseZindex + (10 * modalsVisible.length);
             el.style.zIndex = String(zIndex);
             setTimeout(function() {
+                // ensure the backdrop is one back in the zindex
                 let bdEl = document.querySelector('.modal-backdrop:not(.vb-modal-stack)')
                 if (bdEl) {
                     bdEl.style.zIndex = String(zIndex - 1);
                     bdEl.classList.add('vb-modal-stack')
                 }
+                // remove this event handler
+                el.removeEventListener('show.bs.modal', backdropFix)
             }, 0);
         }
 
@@ -29,13 +32,21 @@ export default {
                 el.$vb.modal = ins
                 el.addEventListener('show.bs.modal', backdropFix)
             },
+            mounted() {
+                //console.log('modal mounted', el)
+                let modifiers = Object.keys(binding.modifiers).map(key => key)
+                if (modifiers && modifiers.length > 0 && modifiers[0] === 'show') {
+                    let ins = Modal.getInstance(el)
+                    if (ins) ins.show()
+                }
+            },
             updated() {
                 if (el.classList && !el.classList.contains('modal')) el.classList.add('modal')
                 let ins = Modal.getInstance(el)
                 if (ins) ins.handleUpdate()
             },
-            beforeUnmount() {
-                el.removeEventListener('show.bs.modal', backdropFix)
+            unmounted() {
+                //console.log('vb-modal unmounted')
                 let ins = Modal.getInstance(el)
                 if (ins) ins.dispose()
                 el.$vb.modal = undefined
@@ -58,6 +69,7 @@ export default {
             }
             if (targetEl) {
                 let ins = Modal.getInstance(targetEl)
+                if (!ins) ins = new Modal(targetEl, binding.value)
                 if (ins) ins.toggle(el)
             }
         }

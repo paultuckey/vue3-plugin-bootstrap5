@@ -77,11 +77,19 @@ export function createVbPlugin(bootstrapObjects, options) {
                 },
                 beforeMount(el, binding) {
                     let handler = getHandler('is', el, binding, false)
-                    if (handler) handler.handlerIns.beforeMount()
+                    if (handler && handler.handlerIns.beforeMount) handler.handlerIns.beforeMount()
+                },
+                mounted(el, binding) {
+                    let handler = getHandler('is', el, binding, false)
+                    if (handler && handler.handlerIns.mounted) handler.handlerIns.mounted()
                 },
                 beforeUnmount(el, binding) {
+                    let handler = getHandler('is', el, binding, false)
+                    if (handler && handler.handlerIns.beforeUnmount) handler.handlerIns.beforeUnmount()
+                },
+                unmounted(el, binding) {
                     let handler = getHandler('is', el, binding, true)
-                    if (handler) handler.handlerIns.beforeUnmount()
+                    if (handler && handler.handlerIns.unmounted) handler.handlerIns.unmounted()
                 },
             })
 
@@ -185,7 +193,7 @@ export function createVbPlugin(bootstrapObjects, options) {
 
             app.directive('vb-on', {
                 beforeMount(el, binding) {
-                    //console.log('on mount', el, binding.arg, binding)
+                    //console.log('vb-on mount', el, binding.arg, binding)
                     if (binding.arg) {
                         let eventName = binding.arg + '.' + Object.keys(binding.modifiers).map(key => key).join('.');
                         //console.log('eventName', eventName)
@@ -193,11 +201,10 @@ export function createVbPlugin(bootstrapObjects, options) {
                     }
                 },
                 beforeUnmount(el, binding) {
-                    //console.log('on umount', el, binding.arg, binding)
+                    //console.log('vb-on beforeUnmount', el, binding.arg, binding)
                     if (binding.arg) {
                         let eventName = binding.arg + '.' + Object.keys(binding.modifiers).map(key => key).join('.');
-                        //console.log('unmount eventName', eventName)
-                        el.addEventListener(eventName, binding.value)
+                        el.removeEventListener(eventName, binding.value)
                     }
                 }
             })

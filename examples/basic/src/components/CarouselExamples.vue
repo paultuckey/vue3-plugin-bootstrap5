@@ -75,12 +75,12 @@
 export default {
     name: 'CarouselExamples',
     methods: {
-        carouselSlide(e) {
-            console.log('carouselSlide', e.direction, e.relatedTarget, e.from, e.to);
-            console.log('Bootstrap carousel object', e.target.$vb.carousel);
+        carouselSlide() {
+            //console.log('carouselSlide', e.direction, e.relatedTarget, e.from, e.to);
+            //console.log('Bootstrap carousel object', e.target.$vb.carousel);
         },
-        carouselSlid(e) {
-            console.log('carouselSlid', e.direction, e.relatedTarget, e.from, e.to);
+        carouselSlid() {
+            //console.log('carouselSlid', e.direction, e.relatedTarget, e.from, e.to);
         }
     }
 }
