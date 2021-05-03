@@ -41,16 +41,32 @@ export default {
                 }
             },
             updated() {
+                //console.log('modal updated')
                 if (el.classList && !el.classList.contains('modal')) el.classList.add('modal')
                 let ins = Modal.getInstance(el)
                 if (ins) ins.handleUpdate()
             },
+            beforeUnmount() {
+                //console.log('modal beforeUnmount', el)
+                // run in next loop to ensure that any hide.bs.modal events are already removed and can't call preventDefault
+                setTimeout(() => {
+                    let ins = Modal.getInstance(el)
+                    // we ideally would not call _isShown (private) however we need it closed with no transition
+                    if (ins && ins._isShown) {
+                        // Vue removes the element in the next loop, so we need to ensure that the animation doesn't
+                        // run and Bootstrap can cleanup immediately
+                        if (el.classList && el.classList.contains('fade')) el.classList.remove('fade')
+                        ins.hide()
+                    }
+                    if (ins) ins.dispose()
+                    el.$vb.modal = undefined
+                    //console.log('modal cleanup done', el)
+                });
+            },
             unmounted() {
-                //console.log('vb-modal unmounted')
-                let ins = Modal.getInstance(el)
-                if (ins) ins.dispose()
-                el.$vb.modal = undefined
+                //console.log('modal unmounted', el)
             }
+
         }
     },
 

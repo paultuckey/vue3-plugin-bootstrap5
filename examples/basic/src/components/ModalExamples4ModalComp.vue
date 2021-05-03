@@ -12,7 +12,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary" @click.prevent="example4CloseModal">Close via method</button>
+                    <button type="button" class="btn btn-secondary" @click.prevent="example4CloseModal">
+                        Close via modal hide</button>
+                    <button type="button" class="btn btn-secondary" @click.prevent="example4CloseViaUnmounting">
+                        Close via unmounting</button>
                 </div>
             </div>
         </div>
@@ -24,15 +27,8 @@
 export default {
     name: 'ModalExamples4ModalComp',
     emits: ['close-modal'],
-    data() {
-        return {
-            //
-        }
-    },
-    mounted() {
-
-    },
     methods: {
+
         example4CloseModal(e) {
             let someValidation = true;
             if (someValidation) {
@@ -43,6 +39,11 @@ export default {
         modalWasHidden() {
             // we sent the event up to remove the component only when
             // Bootstrap has told us the animation is done
+            this.$emit('close-modal');
+        },
+
+        example4CloseViaUnmounting() {
+            // here we ask Vue to remove the component first, it means the Modal fade animation will not run
             this.$emit('close-modal');
         }
     },

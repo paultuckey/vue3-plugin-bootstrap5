@@ -83,6 +83,10 @@ export function createVbPlugin(bootstrapObjects, options) {
                     let handler = getHandler('is', el, binding, false)
                     if (handler && handler.handlerIns.mounted) handler.handlerIns.mounted()
                 },
+                updated(el, binding) {
+                    let handler = getHandler('is', el, binding, false)
+                    if (handler && handler.handlerIns.updated) handler.handlerIns.updated()
+                },
                 beforeUnmount(el, binding) {
                     let handler = getHandler('is', el, binding, false)
                     if (handler && handler.handlerIns.beforeUnmount) handler.handlerIns.beforeUnmount()
