@@ -21,6 +21,22 @@ export default {
                 el.removeEventListener('show.bs.modal', backdropFix)
             }, 0);
         }
+        let hiddenEventHandler = function() {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hidden-bs-modal', true, true)
+            el.dispatchEvent(evt)
+        }
+        let hideEventHandler = function(e) {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hide-bs-modal', true, true)
+            el.dispatchEvent(evt)
+            if (evt.defaultPrevented) e.preventDefault();
+        }
+        let shownEventHandler = function() {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-shown-bs-modal', true, true)
+            el.dispatchEvent(evt)
+        }
 
         return {
             beforeMount() {
@@ -31,6 +47,9 @@ export default {
                 if (!ins) ins = new Modal(el, binding.value)
                 el.$vb.modal = ins
                 el.addEventListener('show.bs.modal', backdropFix)
+                el.addEventListener('shown.bs.modal', shownEventHandler)
+                el.addEventListener('hide.bs.modal', hideEventHandler)
+                el.addEventListener('hidden.bs.modal', hiddenEventHandler)
             },
             mounted() {
                 //console.log('modal mounted', el)
@@ -65,6 +84,10 @@ export default {
             },
             unmounted() {
                 //console.log('modal unmounted', el)
+                el.removeEventListener('show.bs.modal', backdropFix)
+                el.removeEventListener('shown.bs.modal', shownEventHandler)
+                el.removeEventListener('hide.bs.modal', hideEventHandler)
+                el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
             }
 
         }
@@ -77,7 +100,7 @@ export default {
             e.stopPropagation()
             //console.log('modal toggle click', el, binding.value, el.dataset.bsTarget)
             let targetEl = null
-            if (binding.value) {
+            if (binding.value && typeof binding.value === 'string') {
                 let refObj = binding.instance.$refs[binding.value]
                 targetEl = refObj && refObj.$el ? refObj.$el : refObj
             } else if (el.dataset.bsTarget) {
@@ -85,7 +108,7 @@ export default {
             }
             if (targetEl) {
                 let ins = Modal.getInstance(targetEl)
-                if (!ins) ins = new Modal(targetEl, binding.value)
+                if (!ins) ins = new Modal(targetEl)
                 if (ins) ins.toggle(el)
             }
         }
