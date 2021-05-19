@@ -5,14 +5,10 @@ export default {
         //console.log('toast createIsHandler', el, binding)
         return {
             beforeMount() {
-                if (el.classList && !el.classList.contains('toast')) el.classList.add('toast')
                 if (!el.$vb) el.$vb = {};
                 let ins = Toast.getInstance(el)
                 if (!ins) ins = new Toast(el, binding.value)
                 el.$vb.modal = ins
-            },
-            updated() {
-                if (el.classList && !el.classList.contains('toast')) el.classList.add('toast')
             },
             beforeUnmount() {
                 let ins = Toast.getInstance(el)

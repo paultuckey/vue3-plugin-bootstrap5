@@ -7,14 +7,10 @@ export default {
         return {
             beforeMount() {
                 //console.log('carousel beforeMount', el)
-                if (el.classList && !el.classList.contains('carousel')) el.classList.add('carousel')
                 if (!el.$vb) el.$vb = {};
                 let ins = Carousel.getInstance(el)
                 if (!ins) ins = new Carousel(el, binding.value)
                 el.$vb.carousel = ins
-            },
-            updated() {
-                if (el.classList && !el.classList.contains('carousel')) el.classList.add('carousel')
             },
             beforeUnmount() {
                 let ins = Carousel.getInstance(el)

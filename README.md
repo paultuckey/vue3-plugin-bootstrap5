@@ -69,27 +69,17 @@ TODO
 
 ## Modal
 
-On the button replace the Bootstrap attributes
-    `<button data-bs-toggle="modal" data-bs-target="#exampleModal" ...`
-
-With `<button v-vb-toggle:modal data-bs-target="#exampleModal" ...`
-
 See [ModalExamples.vue](examples/basic/src/components/ModalExamples.vue)
 
 
 ## Offcanvas
-
-On the button replace the Bootstrap attributes
-`<button data-bs-toggle="offcanvas" data-bs-target="#exampleOffcanvas" ...`
-
-With `<button v-vb-toggle:offcanvas data-bs-target="#exampleOffcanvas" ...`
 
 See [OffcanvasExamples.vue](examples/basic/src/components/OffcanvasExamples.vue)
 
 
 ## Popover
 
-TODO
+See [PopoverExamples.vue](examples/basic/src/components/PopoverExamples.vue)
 
 
 ## ScrollSpy
@@ -138,13 +128,13 @@ When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap
 
 ## Events
 
-Are added to an element using `v-vb-on:[eventName]="methodToCall""`.  Your method will be called by bootstrap when the 
+Are added to an element using `@vb-[eventName]="methodToCall""`.  Your method will be called by bootstrap when the 
 event it triggered by Bootstrap.
 
 ```html
 <div ref="exampleModalEvents" 
      v-vb-is:modal 
-     v-vb-on:hidden.bs.modal="modalHiddenMethod">...</div>
+     @vb-hidden-bs-modal="modalHiddenMethod">...</div>
  ```
 
 All bootstrap events are supported (so long as `v-vb-on:` is specified the same element as `v-vb-is:`).  See bootstrap 
