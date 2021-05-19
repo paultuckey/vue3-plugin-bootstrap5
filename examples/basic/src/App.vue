@@ -6,6 +6,7 @@
         <ModalExamples />
         <NavsTabsExamples />
         <OffcanvasExamples />
+        <PopoverExamples />
         <TooltipExamples />
     </div>
 </template>
@@ -19,19 +20,22 @@ import CarouselExamples from './components/CarouselExamples'
 import ModalExamples from './components/ModalExamples.vue'
 import NavsTabsExamples from "./components/NavsTabsExamples";
 import OffcanvasExamples from "./components/OffcanvasExamples.vue";
+import PopoverExamples from "./components/PopoverExamples";
 import TooltipExamples from "./components/TooltipExamples.vue";
 
 export default {
   name: 'App',
   components: {
-      AlertExamples,
-      CarouselExamples,
-      ModalExamples,
-      NavsTabsExamples,
-      OffcanvasExamples,
-      TooltipExamples
+    AlertExamples,
+    CarouselExamples,
+    ModalExamples,
+    NavsTabsExamples,
+    OffcanvasExamples,
+    PopoverExamples,
+    TooltipExamples
   }
 }
+
 </script>
 
 <style>
