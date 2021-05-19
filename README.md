@@ -21,9 +21,11 @@ In your `main.js`:
 ```javascript
 
 import { createVbPlugin } from 'vue3-plugin-bootstrap5'
-import { Modal, Offcanvas, Tooltip } from 'bootstrap'
+import { Alert, Button, Carousel, Collapse, Dropdown, Modal,
+  Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip } from 'bootstrap'
 
-let vbPlugin = createVbPlugin({ Modal, Offcanvas, Tooltip })
+let vbPlugin = createVbPlugin({ Alert, Button, Carousel, Collapse, Dropdown, Modal,
+  Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip })
 
 app.use(vbPlugin)
 ```
@@ -35,12 +37,12 @@ See example [main.js](examples/basic/src/main.js)
 
 ## Alerts
 
+TODO 
+
 Add `v-vb-is:alert` to your alert element.
 
-On close buttons replace `data-bs-dismiss="alert"` with `v-vb-dismiss:alert`
-
-Listen for events on your alert element with: `v-vb-on:close.bs.alert="someMethod"` and 
-`v-vb-on:closed.bs.alert="someMethod"`.
+Listen for events on your alert element with: `@vb-close-bs-alert="someMethod"` and 
+`@vb-closed-bs-alert="someMethod"`.
 
 See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
 
@@ -48,13 +50,14 @@ See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
 
 ## Carousel
 
+TODO 
+
 Add `v-vb-is:carousel` to your alert element.
 
-Specify as normal: `data-bs-target`, `data-bs-ride`, `data-bs-slide`, `data-bs-slide-to`, `data-bs-interval`, 
-`data-bs-touch`.
+Listen for events on your carousel element with: `@vb-slide-bs-carousel="someMethod"` and 
+`vb-slide-bs-carousel="someMethod"`.
 
-Listen for events on your carousel element with: `v-vb-on:slide.bs.carousel="someMethod"` and 
-`v-vb-on:slide.bs.carousel="someMethod"`.
+See [CarouselExamples.vue](examples/basic/src/components/CarouselExamples.vue)
 
 
 ## Collapse
@@ -99,9 +102,7 @@ TODO
 
 ## Tooltip
 
-Replace this `<button data-bs-toggle="tooltip" title="Hello World" ...`
-
-With `<button v-vb-toggle:tooltip="'Hello World'" ...`
+TODO 
 
 See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
@@ -148,7 +149,6 @@ documentation for the full list for each component.
 | Component  | Bootstrap 5 | Vue 3 with this plugin |
 | -------------------- | --------------- | ------ | 
 | TODO [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
-| | `data-bs-dismiss="alert"` | `v-vb-dismiss:alert` |
 | | `close.bs.alert` | `@vb-close-bs-alert` |
 | | `closed.bs.alert` | `@vb-closed-bs-alert` |
 | TODO [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | |

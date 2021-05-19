@@ -29,5 +29,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 npm run build
 rsync -av ./dist/ ./examples/basic/node_modules/vue3-plugin-bootstrap5/dist/
 
-ver=v0.0.13
-gh release create "${ver}" --prerelease --title "Vue3 Plugin Bootstrap 5 ${ver}" --notes "Carousel"
+cd examples/basic/
+npm run serve
+
+
+ver=v0.0.23
+gh release create "${ver}" --prerelease --title "Vue3 Plugin Bootstrap 5 ${ver}" --notes "Alpha release"
