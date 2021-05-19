@@ -112,16 +112,18 @@ See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
 When `v-vb-is` is added to an element, this plugin will assign the raw Bootstrap object(s) to `$vb` the property.
 
+```html
+    <div v-vb-is:modal class="modal" ...>
+        ...
+    </div>
+```
+
 ```javascript
 
     // when `v-vb-is` is used on an element, add a ref (eg ref="exampleEl") then use $vb like this:
     this.$refs.exampleEl.$vb.modal.hide()
 
-    // note, this is same as doing this:    
-    bootstrap.Modal.getInstance(this.$refs.exampleEl).hide()
-
-    // if `v-vb-is` is used on the root element of a component use $vb like this:
-    this.$el.$vb.modal.hide()
+    // note, this is same as: bootstrap.Modal.getInstance(this.$refs.exampleEl).hide()
 
 ```
 
@@ -137,14 +139,65 @@ event it triggered by Bootstrap.
      @vb-hidden-bs-modal="modalHiddenMethod">...</div>
  ```
 
-All bootstrap events are supported (so long as `v-vb-on:` is specified the same element as `v-vb-is:`).  See bootstrap 
-documentation for the full list for each component:
+Bootstrap events are supported (so long as `@vb-` is specified the same element as `v-vb-is:`).  See bootstrap 
+documentation for the full list for each component.
 
-  - [Alerts Events](https://getbootstrap.com/docs/5.0/components/alerts/#events)
-  - [Carousel Events](https://getbootstrap.com/docs/5.0/components/carousel/#events)
-  - [Collapse Events](https://getbootstrap.com/docs/5.0/components/collapse/#events)
-  - [Dropdowns Events](https://getbootstrap.com/docs/5.0/components/dropdowns/#events)
-  - [List Group Events](https://getbootstrap.com/docs/5.0/components/list-group/#events)
-  - [Modal Events](https://getbootstrap.com/docs/5.0/components/modal/#events)
-  - [Navs & Tabs Events](https://getbootstrap.com/docs/5.0/components/navs-tabs/#events)
-  - [Offcanvas Events](https://getbootstrap.com/docs/5.0/components/offcanvas/#events)
+
+## Cheat Sheet
+
+| Component  | Bootstrap 5 | Vue 3 with this plugin |
+| -------------------- | --------------- | ------ | 
+| TODO [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
+| | `data-bs-dismiss="alert"` | `v-vb-dismiss:alert` |
+| | `close.bs.alert` | `@vb-close-bs-alert` |
+| | `closed.bs.alert` | `@vb-closed-bs-alert` |
+| TODO [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | |
+| | `data-bs-slide="next"` | `v-vb-slide:next` |
+| | `data-bs-slide="prev"` | `v-vb-slide:prev` |
+| | `data-bs-slide-to="0"` | `v-vb-slide-to` |
+| | `slide.bs.carousel` | `@vb-slide-bs-carousel="someMethod"` |
+| | `slid.bs.carousel` | `@vb-slid-bs-carousel="someMethod"` |
+| TODO [Collapse](https://getbootstrap.com/docs/5.0/components/collapse/) | |
+| | `show.bs.collapse` | `@vb-show-bs-collapse="someMethod"` |
+| | `shown.bs.collapse` | `@vb-shown-bs-collapse="someMethod"` | 
+| | `hide.bs.collapse` | `@vb-hide-bs-collapse="someMethod"` |
+| | `hidden.bs.collapse` | `@vb-hidden-bs-collapse="someMethod"` |
+| TODO [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/) | | 
+| | `show.bs.dropdown` | `@vb-show-bs-dropdown="someMethod"` |
+| | `shown.bs.dropdown` | `@vb-shown-bs-dropdown="someMethod"` |
+| | `hide.bs.dropdown` | `@vb-hide-bs-dropdown="someMethod"` |
+| | `hidden.bs.dropdown` | `@vb-hidden-bs-dropdown="someMethod"` |
+| TODO [List Group](https://getbootstrap.com/docs/5.0/components/list-group/) | | 
+| | `show.bs.tab` | `@vb-show-bs-tab="someMethod"` |
+| | `shown.bs.tab` |  `@vb-shown-bs-tab="someMethod"` |
+| | `hide.bs.tab` | `@vb-hide-bs-tab="someMethod"` |
+| | `hidden.bs.tab` | `@vb-hidden-bs-tab="someMethod"` |
+| [Modal](https://getbootstrap.com/docs/5.0/components/modal/) | `new bootstrap.Modal(el, optionsObj)` | `v-vb-is:modal="optionsObj"` |
+| | `show.bs.modal` | `@vb-show-bs-modal="someMethod"` |
+| | `shown.bs.modal` | `@vb-shown-bs-modal="someMethod"` |
+| | `hide.bs.modal` | `@vb-hide-bs-modal="someMethod"` |
+| | `hidden.bs.modal` | `@vb-hidden-bs-modal="someMethod"` |
+| | `hidePrevented.bs.modal` | `@vb-hidePrevented-bs-modal="someMethod"` |
+| TODO [Navs & Tabs](https://getbootstrap.com/docs/5.0/components/navs-tabs/) |
+| | `show.bs.tab` |  `@vb-show-bs-tab="someMethod"` |
+| | `shown.bs.tab` | `@vb-shown-bs-tab="someMethod"` |
+| | `hide.bs.tab` | `@vb-hide-bs-tab="someMethod"` |
+| | `hidden.bs.tab` | `@vb-hidden-bs-tab="someMethod"` |
+| [Offcanvas](https://getbootstrap.com/docs/5.0/components/offcanvas/) | `new bootstrap.Offcanvas(el, optionsObj)` | `v-vb-is:offcanvas="optionsObj"` |
+| | `show.bs.offcanvas` | `@vb-show-bs-offcanvas="someMethod"` |
+| | `shown.bs.offcanvas` | `@vb-shown-bs-offcanvas="someMethod"` |
+| | `hide.bs.offcanvas` | `@vb-hide-bs-offcanvas="someMethod"` |
+| | `hidden.bs.offcanvas` | `@vb-hidden-bs-offcanvas="someMethod"` |
+| [Popover](https://getbootstrap.com/docs/5.0/components/popovers/) | `new bootstrap.Popover(el, optionsObj)` | `v-vb-is:popover="optionsObj"` |
+| | `show.bs.popover` | `@vb-show-bs-popover="someMethod"` |
+| | `shown.bs.popover` | `@vb-shown-bs-popover="someMethod"` |
+| | `hide.bs.popover` | `@vb-hide-bs-popover="someMethod"` |
+| | `hidden.bs.popover` | `@vb-hidden-bs-popover="someMethod"` |
+| | `inserted.bs.popover` | `@vb-inserted-bs-popover="someMethod"` |
+| TODO [Scrollspy](https://getbootstrap.com/docs/5.0/components/scrollspy/) | `new bootstrap.ScrollSpy(el, optionsObj)` | `v-vb-is:scrollspy="optionsObj"` |
+| | `data-bs-spy="scroll"` | `v-vb-is:scrollspy="optionsObj"` |
+| | `activate.bs.scrollspy` | `@vb-activate-bs-scrollspy="someMethod"` |
+
+
+
+
