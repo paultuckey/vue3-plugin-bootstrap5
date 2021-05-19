@@ -37,8 +37,6 @@ See example [main.js](examples/basic/src/main.js)
 
 ## Alerts
 
-TODO 
-
 Add `v-vb-is:alert` to your alert element.
 
 Listen for events on your alert element with: `@vb-close-bs-alert="someMethod"` and 
@@ -148,7 +146,7 @@ documentation for the full list for each component.
 
 | Component  | Bootstrap 5 | Vue 3 with this plugin |
 | -------------------- | --------------- | ------ | 
-| TODO [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
+| [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
 | | `close.bs.alert` | `@vb-close-bs-alert` |
 | | `closed.bs.alert` | `@vb-closed-bs-alert` |
 | TODO [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | |
