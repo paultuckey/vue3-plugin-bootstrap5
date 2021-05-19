@@ -193,67 +193,6 @@ export function createVbPlugin(bootstrapObjects, options) {
                 }
             })
 
-            // not specific to a bs type
-
-            let eventListenerPreventDefault = function(e) {
-                e.preventDefault();
-            };
-
-            app.directive('vb-set', {
-
-                created(el, binding) {
-                    if (binding.arg) {
-                        let keyName = 'vb_' + binding.arg + '_' + Object.keys(binding.modifiers).map(key => key).join('_');
-                        el.dataset[keyName] = binding.value
-                    }
-                },
-                beforeMount(el, binding) {
-                    if (binding.arg) {
-                        let keyName = 'vb_' + binding.arg + '_' + Object.keys(binding.modifiers).map(key => key).join('_');
-                        el.dataset[keyName] = binding.value
-                    }
-                },
-                updated(el, binding) {
-                    if (binding.arg) {
-                        let keyName = 'vb_' + binding.arg + '_' + Object.keys(binding.modifiers).map(key => key).join('_');
-                        el.dataset[keyName] = binding.value
-                        if (keyName === 'vb_modal_show' && el.$vb && el.$vb.modal) {
-                            if (binding.value === true && !el.$vb.modal._isShown) {
-                                el.$vb.modal.show()
-                                el.addEventListener('hide.bs.modal', eventListenerPreventDefault)
-                            }
-                            if (binding.value === false && el.$vb.modal._isShown) {
-                                el.removeEventListener('hide.bs.modal', eventListenerPreventDefault)
-                                el.$vb.modal.hide()
-                            }
-                        }
-                    }
-                },
-                beforeUnmount(el, binding) {
-                    if (binding.arg) {
-                        let keyName = 'vb_' + binding.arg + '_' + Object.keys(binding.modifiers).map(key => key).join('_');
-                        if (el.dataset[keyName]) delete el.dataset[keyName]
-                    }
-                },
-            })
-
-            app.directive('vb-on', {
-                beforeMount(el, binding) {
-                    //console.log('vb-on mount', el, binding.arg, binding)
-                    if (binding.arg) {
-                        let eventName = binding.arg + '.' + Object.keys(binding.modifiers).map(key => key).join('.');
-                        console.log('eventName', eventName, binding.value, binding.expression)
-                        el.addEventListener(eventName, binding.value)
-                    }
-                },
-                beforeUnmount(el, binding) {
-                    //console.log('vb-on beforeUnmount', el, binding.arg, binding)
-                    if (binding.arg) {
-                        let eventName = binding.arg + '.' + Object.keys(binding.modifiers).map(key => key).join('.');
-                        el.removeEventListener(eventName, binding.value)
-                    }
-                }
-            })
         }
     }
 }

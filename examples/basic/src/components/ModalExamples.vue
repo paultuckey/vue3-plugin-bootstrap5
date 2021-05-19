@@ -5,7 +5,7 @@
           <h2>Modal via Ref</h2>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModal1'">
+          <button type="button" class="btn btn-primary" @click.prevent="$refs.exampleModal1.$vb.modal.show()">
               Launch demo modal
           </button>
 
@@ -64,15 +64,15 @@
           <h2>Modal with events</h2>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModal3'">
+          <button type="button" class="btn btn-primary" @click.prevent="$refs.exampleModal3.$vb.modal.show()">
               Launch demo modal with events
           </button>
 
           <!-- Modal -->
           <div ref="exampleModal3" v-vb-is:modal
-               v-vb-on:shown.bs.modal="example3SetFocus"
-               v-vb-on:hide.bs.modal="example3ModalHide"
-               v-vb-on:hidden.bs.modal="example3ModalHidden"
+               @vb-shown-bs-modal="example3SetFocus"
+               @vb-hide-bs-modal="example3ModalHide"
+               @vb-hidden-bs-modal="example3ModalHidden"
                class="modal fade" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
@@ -103,12 +103,13 @@
           <h2>Modal Layering</h2>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModalLayering'">
+          <button type="button" class="btn btn-primary" @click.prevent="$refs.exampleModalLayering.$vb.modal.show()">
               Launch demo modal
           </button>
 
           <!-- Modal -->
           <div ref="exampleModalLayering" v-vb-is:modal
+               @vb-hidden-bs-modal="console.log('hi')"
                class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabelLayering" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
@@ -119,7 +120,7 @@
                       <div class="modal-body">...</div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary" v-vb-toggle:modal="'exampleModalLayering2'">Open Another Modal</button>
+                          <button type="button" class="btn btn-primary" @click.prevent="$refs.exampleModalLayering2.$vb.modal.show()">Open Another Modal</button>
                       </div>
                   </div>
               </div>
@@ -150,7 +151,7 @@
               Launch demo modal
           </button>
           <ModalExamples4ModalComp v-if="modalExample4IsShown"
-                @close-modal="modalExample4IsShown=false"></ModalExamples4ModalComp>
+                @modal-was-hidden="modalExample4IsShown=false"></ModalExamples4ModalComp>
       </div>
 
   </div>
@@ -166,13 +167,14 @@ export default {
     data() {
         return {
             example3PreventModalClosing: false,
-            modalExample4IsShown: false
+            modalExample4IsShown: false,
+            exampleModal5Shown: false
         }
     },
     methods: {
 
         example1CloseViaMethod() {
-            this.$refs.exampleModal1.$vb.modal.hide();
+            this.$refs.exampleModal1.$vb.modal.hide()
         },
 
         example2Close() {
@@ -193,16 +195,16 @@ export default {
             // do validation here, if it fails then return
 
             // pretend to save
-            this.example3PreventModalClosing = true;
+            this.example3PreventModalClosing = true
             setTimeout(() => {
-                this.example3PreventModalClosing = false;
-                this.$refs.exampleModal3.$vb.modal.hide();
-            }, 5000);
+                this.example3PreventModalClosing = false
+                this.$refs.exampleModal3.$vb.modal.hide()
+            }, 5000)
         },
 
         example4ShowModal() {
-            this.modalExample4IsShown = true;
-        }
+            this.modalExample4IsShown = true
+        },
 
     },
 }

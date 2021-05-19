@@ -1,5 +1,6 @@
 <template>
-    <div ref="exampleModal4" v-vb-is:modal.show v-vb-on:hidden.bs.modal="modalWasHidden"
+    <div ref="exampleModal4" v-vb-is:modal.show
+         @vb-hidden-bs-modal="modalWasHidden"
          class="modal fade" tabindex="-1" aria-labelledby="exampleModal4Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -26,7 +27,7 @@
 
 export default {
     name: 'ModalExamples4ModalComp',
-    emits: ['close-modal'],
+    emits: ['modal-was-hidden'],
     methods: {
 
         example4CloseModal(e) {
@@ -37,14 +38,14 @@ export default {
             this.$refs.exampleModal4.$vb.modal.hide();
         },
         modalWasHidden() {
-            // we sent the event up to remove the component only when
-            // Bootstrap has told us the animation is done
-            this.$emit('close-modal');
+            // Good: we sent the event up to remove the component only when
+            //       Bootstrap has told us the animation is done
+            this.$emit('modal-was-hidden');
         },
 
         example4CloseViaUnmounting() {
-            // here we ask Vue to remove the component first, it means the Modal fade animation will not run
-            this.$emit('close-modal');
+            // Bad: here we ask Vue to remove the element first, it means the Modal fade animation will not run
+            this.$emit('modal-was-hidden');
         }
     },
 }

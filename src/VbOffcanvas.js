@@ -4,90 +4,68 @@ export default {
 
     createIsHandler(Offcanvas, el, binding) {
         //console.log('offcanvas createIsHandler')
+
+        let showEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-show-bs-offcanvas', true, true)
+            el.dispatchEvent(evt)
+        }
+        let shownEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-shown-bs-offcanvas', true, true)
+            el.dispatchEvent(evt)
+        }
+        let hideEventHandler = (e) => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hide-bs-offcanvas', true, true)
+            el.dispatchEvent(evt)
+            if (evt.defaultPrevented) e.preventDefault();
+        }
+        let hiddenEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hidden-bs-offcanvas', true, true)
+            el.dispatchEvent(evt)
+        }
+
         return {
             beforeMount() {
                 //console.log('offcanvas beforeMount', el)
-                if (el.classList && !el.classList.contains('offcanvas')) el.classList.add('offcanvas')
                 if (!el.$vb) el.$vb = {};
                 let ins = Offcanvas.getInstance(el)
                 if (!ins) ins = new Offcanvas(el, binding.value)
                 el.$vb.offcanvas = ins
-            },
-            updated() {
-                if (el.classList && !el.classList.contains('offcanvas')) el.classList.add('offcanvas')
+                el.addEventListener('show.bs.offcanvas', showEventHandler)
+                el.addEventListener('shown.bs.offcanvas', shownEventHandler)
+                el.addEventListener('hide.bs.offcanvas', hideEventHandler)
+                el.addEventListener('hidden.bs.offcanvas', hiddenEventHandler)
             },
             beforeUnmount() {
-                let ins = Offcanvas.getInstance(el)
-                if (ins) ins.dispose()
-                el.$vb.offcanvas = undefined
+                //console.log('offcanvas beforeUnmount', el)
+                // run in next loop to ensure that any hide.bs.modal events are already removed and can't call preventDefault
+                setTimeout(() => {
+                    let ins = Offcanvas.getInstance(el)
+                    // we ideally would not call _isShown (private) however we need it closed with no transition
+                    if (ins && ins._isShown) {
+                        // Vue removes the element in the next loop, so we need to ensure that the animation doesn't
+                        // run and Bootstrap can cleanup immediately
+                        if (el.classList && el.classList.contains('fade')) el.classList.remove('fade')
+                        ins.hide()
+                    }
+                    if (ins) ins.dispose()
+                    el.$vb.offcanvas = undefined
+                    //console.log('modal cleanup done', el)
+                });
+            },
+            unmounted() {
+                //console.log('modal unmounted', el)
+                el.removeEventListener('show.bs.offcanvas', showEventHandler)
+                el.removeEventListener('shown.bs.offcanvas', shownEventHandler)
+                el.removeEventListener('hide.bs.offcanvas', hideEventHandler)
+                el.removeEventListener('hidden.bs.offcanvas', hiddenEventHandler)
             }
         }
     },
 
-    createToggleHandler(Offcanvas, el, binding) {
-        //console.log('createToggleHandler', el, binding)
-        let clickHandler = async function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            //console.log('offcanvas toggle click', el, binding.value, el.dataset.bsTarget)
-            let targetEl = null
-            if (binding.value) {
-                let refObj = binding.instance.$refs[binding.value]
-                targetEl = refObj && refObj.$el ? refObj.$el : refObj
-            } else if (el.dataset.bsTarget) {
-                targetEl = document.querySelector(el.dataset.bsTarget)
-            }
-            if (targetEl) {
-                let ins = Offcanvas.getInstance(targetEl)
-                if (ins) ins.toggle(el)
-            }
-        }
-        return {
-            beforeMount() {
-                //console.log('offcanvas toggle beforemount')
-                el.addEventListener('click', clickHandler);
-            },
-            beforeUnmount() {
-                el.removeEventListener('click', clickHandler);
-            }
-        }
-    },
-
-    createDismissHandler(Offcanvas, el, binding) {
-        let getParentOffcanvas = function(el) {
-            let currNode = el
-            while (currNode) {
-                if (currNode && currNode.classList && currNode.classList.contains('offcanvas')) {
-                    break
-                }
-                currNode = currNode.parentNode
-            }
-            return currNode
-        }
-        let clickHandler = function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            //console.log('dismiss', binding)
-            if (binding.value) {
-                let allowedToClose = binding.value(e)
-                //console.log('allowedToClose', allowedToClose)
-                if (!allowedToClose) return
-            }
-            let offcanvasEl = getParentOffcanvas(e.target)
-            if (offcanvasEl) {
-                let ins = Offcanvas.getInstance(offcanvasEl)
-                if (ins) ins.hide();
-            }
-        }
-        return {
-            beforeMount() {
-                el.addEventListener('click', clickHandler);
-            },
-            beforeUnmount() {
-                el.removeEventListener('click', clickHandler);
-            }
-        }
-    }
 
 
 }
