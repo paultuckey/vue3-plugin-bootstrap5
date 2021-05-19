@@ -22,8 +22,8 @@
             <h2>Carousel with controls</h2>
 
             <div v-vb-is:carousel ref="exampleCarousel2"
-                    v-vb-on:slide.bs.carousel="carouselSlide"
-                    v-vb-on:slid.bs.carousel="carouselSlide"
+                    @vb-slide-bs-carousel="carouselSlide"
+                    @vb-slid-bs-carousel="carouselSlide"
                     id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
                     data-bs-interval="42000">
                 <div class="carousel-inner">
