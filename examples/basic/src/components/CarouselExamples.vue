@@ -48,21 +48,16 @@
             </div>
 
             <button @click.prevent="$refs.exampleCarousel2.$vb.carousel.prev()"
-                    type="button" class="btn btn-light">Prev via $vb</button>
+                    type="button" class="btn btn-light">Prev via <code>carousel.prev()</code></button>
             <button @click.prevent="$refs.exampleCarousel2.$vb.carousel.next()"
-                    type="button" class="btn btn-light">Next via $vb</button>
+                    type="button" class="btn btn-light">Next via <code>carousel.next()</code></button>
 
-            <button v-vb-slide:prev
-                    type="button" class="btn btn-light">Prev via <code>v-vb-slide:prev</code></button>
-            <button v-vb-slide:next
-                    type="button" class="btn btn-light">Next via <code>v-vb-slide:next</code></button>
-
-            <button v-vb-slide-to:0
-                    type="button" class="btn btn-light">0 via <code>v-vb-slide-to:0</code></button>
-            <button v-vb-slide-to:1
-                    type="button" class="btn btn-light">1 via <code>v-vb-slide-to:1</code></button>
-            <button v-vb-slide-to:2
-                    type="button" class="btn btn-light">2 via <code>v-vb-slide-to:2</code></button>
+            <button @click.prevent="$refs.exampleCarousel2.$vb.carousel.to(0)"
+                    type="button" class="btn btn-light">0 via <code>carousel.to(0)</code></button>
+            <button @click.prevent="$refs.exampleCarousel2.$vb.carousel.to(1)"
+                    type="button" class="btn btn-light">1 via <code>carousel.to(1)</code></button>
+            <button @click.prevent="$refs.exampleCarousel2.$vb.carousel.to(2)"
+                    type="button" class="btn btn-light">2 via <code>carousel.to(2)</code></button>
 
 
         </div>
