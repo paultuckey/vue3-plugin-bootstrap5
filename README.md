@@ -48,9 +48,7 @@ See [AlertExamples.vue](examples/basic/src/components/AlertExamples.vue)
 
 ## Carousel
 
-TODO 
-
-Add `v-vb-is:carousel` to your alert element.
+Add `v-vb-is:carousel` to your carousel element.
 
 Listen for events on your carousel element with: `@vb-slide-bs-carousel="someMethod"` and 
 `vb-slide-bs-carousel="someMethod"`.
@@ -149,10 +147,7 @@ documentation for the full list for each component.
 | [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
 | | `close.bs.alert` | `@vb-close-bs-alert` |
 | | `closed.bs.alert` | `@vb-closed-bs-alert` |
-| TODO [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | |
-| | `data-bs-slide="next"` | `v-vb-slide:next` |
-| | `data-bs-slide="prev"` | `v-vb-slide:prev` |
-| | `data-bs-slide-to="0"` | `v-vb-slide-to` |
+| [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | `new bootstrap.Carousel(el)` | `v-vb-is:carousel`
 | | `slide.bs.carousel` | `@vb-slide-bs-carousel="someMethod"` |
 | | `slid.bs.carousel` | `@vb-slid-bs-carousel="someMethod"` |
 | TODO [Collapse](https://getbootstrap.com/docs/5.0/components/collapse/) | |
