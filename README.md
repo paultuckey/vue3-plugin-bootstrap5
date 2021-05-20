@@ -58,12 +58,12 @@ See [CarouselExamples.vue](examples/basic/src/components/CarouselExamples.vue)
 
 ## Collapse
 
-TODO
+See [CollapseExamples.vue](examples/basic/src/components/CollapseExamples.vue)
 
 
 ## Dropdowns
 
-TODO
+See [DropdownExamples.vue](examples/basic/src/components/DropdownExamples.vue)
 
 
 ## Modal
@@ -147,15 +147,15 @@ documentation for the full list for each component.
 | [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
 | | `close.bs.alert` | `@vb-close-bs-alert` |
 | | `closed.bs.alert` | `@vb-closed-bs-alert` |
-| [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | `new bootstrap.Carousel(el)` | `v-vb-is:carousel`
+| [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | `new bootstrap.Carousel(el)` | `v-vb-is:carousel` |
 | | `slide.bs.carousel` | `@vb-slide-bs-carousel="someMethod"` |
 | | `slid.bs.carousel` | `@vb-slid-bs-carousel="someMethod"` |
-| TODO [Collapse](https://getbootstrap.com/docs/5.0/components/collapse/) | |
+| [Collapse](https://getbootstrap.com/docs/5.0/components/collapse/) | `new bootstrap.Collapse(el, optionsObj)` | `v-vb-is:collapse="optionsObj"` |
 | | `show.bs.collapse` | `@vb-show-bs-collapse="someMethod"` |
 | | `shown.bs.collapse` | `@vb-shown-bs-collapse="someMethod"` | 
 | | `hide.bs.collapse` | `@vb-hide-bs-collapse="someMethod"` |
 | | `hidden.bs.collapse` | `@vb-hidden-bs-collapse="someMethod"` |
-| TODO [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/) | | 
+| [Dropdowns](https://getbootstrap.com/docs/5.0/components/dropdowns/) | `new bootstrap.Dropdown(el, optionsObj)` | `v-vb-is:dropdown="optionsObj"` 
 | | `show.bs.dropdown` | `@vb-show-bs-dropdown="someMethod"` |
 | | `shown.bs.dropdown` | `@vb-shown-bs-dropdown="someMethod"` |
 | | `hide.bs.dropdown` | `@vb-hide-bs-dropdown="someMethod"` |

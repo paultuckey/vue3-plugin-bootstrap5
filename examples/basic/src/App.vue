@@ -3,6 +3,8 @@
         <h1>Examples for Vue3 Plugin for Bootstrap 5</h1>
         <AlertExamples />
         <CarouselExamples />
+        <CollapseExamples />
+        <DropdownExamples />
         <ModalExamples />
         <NavsTabsExamples />
         <OffcanvasExamples />
@@ -17,6 +19,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import AlertExamples from './components/AlertExamples.vue'
 import CarouselExamples from './components/CarouselExamples'
+import CollapseExamples from "./components/CollapseExamples";
+import DropdownExamples from "./components/DropdownExamples";
 import ModalExamples from './components/ModalExamples.vue'
 import NavsTabsExamples from "./components/NavsTabsExamples";
 import OffcanvasExamples from "./components/OffcanvasExamples.vue";
@@ -28,6 +32,8 @@ export default {
   components: {
     AlertExamples,
     CarouselExamples,
+    CollapseExamples,
+    DropdownExamples,
     ModalExamples,
     NavsTabsExamples,
     OffcanvasExamples,

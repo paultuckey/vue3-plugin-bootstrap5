@@ -52,8 +52,6 @@ export default {
                 let ins = Popover.getInstance(el)
                 if (ins) ins.dispose()
                 el.$vb.popover = undefined
-            },
-            unmounted() {
                 el.removeEventListener('show.bs.popover', showEventHandler)
                 el.removeEventListener('shown.bs.popover', shownEventHandler)
                 el.removeEventListener('hide.bs.popover', hideEventHandler)

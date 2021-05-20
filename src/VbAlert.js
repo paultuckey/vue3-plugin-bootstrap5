@@ -27,8 +27,6 @@ export default {
                 let ins = Alert.getInstance(el)
                 if (ins) ins.dispose()
                 el.$vb.alert = undefined
-            },
-            unmounted() {
                 el.removeEventListener('close.bs.alert', closeEventHandler)
                 el.removeEventListener('closed.bs.alert', closedEventHandler)
             }

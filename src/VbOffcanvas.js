@@ -53,15 +53,12 @@ export default {
                     }
                     if (ins) ins.dispose()
                     el.$vb.offcanvas = undefined
+                    el.removeEventListener('show.bs.offcanvas', showEventHandler)
+                    el.removeEventListener('shown.bs.offcanvas', shownEventHandler)
+                    el.removeEventListener('hide.bs.offcanvas', hideEventHandler)
+                    el.removeEventListener('hidden.bs.offcanvas', hiddenEventHandler)
                     //console.log('modal cleanup done', el)
                 });
-            },
-            unmounted() {
-                //console.log('modal unmounted', el)
-                el.removeEventListener('show.bs.offcanvas', showEventHandler)
-                el.removeEventListener('shown.bs.offcanvas', shownEventHandler)
-                el.removeEventListener('hide.bs.offcanvas', hideEventHandler)
-                el.removeEventListener('hidden.bs.offcanvas', hiddenEventHandler)
             }
         }
     },

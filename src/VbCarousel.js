@@ -29,8 +29,6 @@ export default {
                 let ins = Carousel.getInstance(el)
                 if (ins) ins.dispose()
                 el.$vb.carousel = undefined
-            },
-            unmounted() {
                 el.removeEventListener('slide.bs.carousel', slideEventHandler)
                 el.removeEventListener('slid.bs.carousel', slidEventHandler)
             }

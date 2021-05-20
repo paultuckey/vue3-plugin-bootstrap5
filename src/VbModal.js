@@ -97,17 +97,13 @@ export default {
                     }
                     if (ins) ins.dispose()
                     el.$vb.modal = undefined
+                    el.removeEventListener('show.bs.modal', showEventHandler)
+                    el.removeEventListener('shown.bs.modal', shownEventHandler)
+                    el.removeEventListener('hide.bs.modal', hideEventHandler)
+                    el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
                     //console.log('modal cleanup done', el)
                 });
-            },
-            unmounted() {
-                //console.log('modal unmounted', el)
-                el.removeEventListener('show.bs.modal', showEventHandler)
-                el.removeEventListener('shown.bs.modal', shownEventHandler)
-                el.removeEventListener('hide.bs.modal', hideEventHandler)
-                el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
             }
-
         }
     },
 
