@@ -86,24 +86,26 @@ export default {
             beforeUnmount() {
                 //console.log('modal beforeUnmount', el)
                 // run in next loop to ensure that any hide.bs.modal events are already removed and can't call preventDefault
-                setTimeout(() => {
-                    let ins = Modal.getInstance(el)
-                    // we ideally would not call _isShown (private) however we need it closed with no transition
-                    if (ins && ins._isShown) {
-                        // Vue removes the element in the next loop, so we need to ensure that the animation doesn't
-                        // run and Bootstrap can cleanup immediately
-                        if (el.classList && el.classList.contains('fade')) el.classList.remove('fade')
-                        ins.hide()
-                    }
-                    if (ins) ins.dispose()
-                    el.$vb.modal = undefined
-                    el.removeEventListener('show.bs.modal', showEventHandler)
-                    el.removeEventListener('shown.bs.modal', shownEventHandler)
-                    el.removeEventListener('hide.bs.modal', hideEventHandler)
-                    el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
-                    modalHiddenFix();
-                    //console.log('modal cleanup done', el)
-                });
+
+                // TODO if modal is shown or transitioning we need to remove NOW in this JS loop, HOW???
+
+                el.removeEventListener('show.bs.modal', showEventHandler)
+                el.removeEventListener('shown.bs.modal', shownEventHandler)
+                el.removeEventListener('hide.bs.modal', hideEventHandler)
+                el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
+
+                let ins = Modal.getInstance(el)
+                // we ideally would not call _isShown (private) however we need it closed with no transition
+                if (ins && ins._isShown) {
+                    // Vue removes the element in the next loop, so we need to ensure that the animation doesn't
+                    // run and Bootstrap can cleanup immediately
+                    if (el.classList && el.classList.contains('fade')) el.classList.remove('fade')
+                    ins.hide()
+                }
+                if (ins) ins.dispose()
+                el.$vb.modal = undefined
+                //console.log('modal cleanup done', el)
+
             }
         }
     },

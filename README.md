@@ -1,6 +1,6 @@
 # Vue 3 Plugin for Bootstrap 5
 
-# ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA ALPHA
+# BETA BETA BETA BETA BETA BETA BETA 
 
 This plugin is designed to add directives to Vue 3 that can be used to create and control Bootstrap 5 JavaScript 
 objects.
@@ -83,22 +83,20 @@ See [PopoverExamples.vue](examples/basic/src/components/PopoverExamples.vue)
 
 ## ScrollSpy
 
-TODO
+See [ScrollSpyExamples.vue](examples/basic/src/components/ScrollSpyExamples.vue)
 
 
 ## Tab (Listgroup, Navs)
 
-TODO
+See [NavTabsExamples.vue](examples/basic/src/components/NavTabsExamples.vue)
 
 
 ## Toast
 
-TODO
+See [ToastExamples.vue](examples/basic/src/components/ToastExamples.vue)
 
 
 ## Tooltip
-
-TODO 
 
 See [TooltipExamples.vue](examples/basic/src/components/TooltipExamples.vue)
 
@@ -147,7 +145,7 @@ documentation for the full list for each component.
 | [Alerts](https://getbootstrap.com/docs/5.0/components/alerts/) | `new bootstrap.Alert(el)` | `v-vb-is:alert` | 
 | | `close.bs.alert` | `@vb-close-bs-alert` |
 | | `closed.bs.alert` | `@vb-closed-bs-alert` |
-| [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | `new bootstrap.Carousel(el)` | `v-vb-is:carousel` |
+| [Carousel](https://getbootstrap.com/docs/5.0/components/carousel/) | `new bootstrap.Carousel(el, optionsObj)` | `v-vb-is:carousel="optionsObj"` |
 | | `slide.bs.carousel` | `@vb-slide-bs-carousel="someMethod"` |
 | | `slid.bs.carousel` | `@vb-slid-bs-carousel="someMethod"` |
 | [Collapse](https://getbootstrap.com/docs/5.0/components/collapse/) | `new bootstrap.Collapse(el, optionsObj)` | `v-vb-is:collapse="optionsObj"` |
@@ -160,18 +158,13 @@ documentation for the full list for each component.
 | | `shown.bs.dropdown` | `@vb-shown-bs-dropdown="someMethod"` |
 | | `hide.bs.dropdown` | `@vb-hide-bs-dropdown="someMethod"` |
 | | `hidden.bs.dropdown` | `@vb-hidden-bs-dropdown="someMethod"` |
-| TODO [List Group](https://getbootstrap.com/docs/5.0/components/list-group/) | | 
-| | `show.bs.tab` | `@vb-show-bs-tab="someMethod"` |
-| | `shown.bs.tab` |  `@vb-shown-bs-tab="someMethod"` |
-| | `hide.bs.tab` | `@vb-hide-bs-tab="someMethod"` |
-| | `hidden.bs.tab` | `@vb-hidden-bs-tab="someMethod"` |
 | [Modal](https://getbootstrap.com/docs/5.0/components/modal/) | `new bootstrap.Modal(el, optionsObj)` | `v-vb-is:modal="optionsObj"` |
 | | `show.bs.modal` | `@vb-show-bs-modal="someMethod"` |
 | | `shown.bs.modal` | `@vb-shown-bs-modal="someMethod"` |
 | | `hide.bs.modal` | `@vb-hide-bs-modal="someMethod"` |
 | | `hidden.bs.modal` | `@vb-hidden-bs-modal="someMethod"` |
 | | `hidePrevented.bs.modal` | `@vb-hidePrevented-bs-modal="someMethod"` |
-| TODO [Navs & Tabs](https://getbootstrap.com/docs/5.0/components/navs-tabs/) |
+| [Navs & Tabs](https://getbootstrap.com/docs/5.0/components/navs-tabs/) / [List Group](https://getbootstrap.com/docs/5.0/components/list-group/) | `new bootstrap.Tab(el)` | `v-vb-is:tab` |
 | | `show.bs.tab` |  `@vb-show-bs-tab="someMethod"` |
 | | `shown.bs.tab` | `@vb-shown-bs-tab="someMethod"` |
 | | `hide.bs.tab` | `@vb-hide-bs-tab="someMethod"` |
@@ -187,10 +180,6 @@ documentation for the full list for each component.
 | | `hide.bs.popover` | `@vb-hide-bs-popover="someMethod"` |
 | | `hidden.bs.popover` | `@vb-hidden-bs-popover="someMethod"` |
 | | `inserted.bs.popover` | `@vb-inserted-bs-popover="someMethod"` |
-| TODO [Scrollspy](https://getbootstrap.com/docs/5.0/components/scrollspy/) | `new bootstrap.ScrollSpy(el, optionsObj)` | `v-vb-is:scrollspy="optionsObj"` |
-| | `data-bs-spy="scroll"` | `v-vb-is:scrollspy="optionsObj"` |
+| [Scrollspy](https://getbootstrap.com/docs/5.0/components/scrollspy/) | `new bootstrap.ScrollSpy(el, optionsObj)` | `v-vb-is:scrollspy="optionsObj"` |
 | | `activate.bs.scrollspy` | `@vb-activate-bs-scrollspy="someMethod"` |
-
-
-
 

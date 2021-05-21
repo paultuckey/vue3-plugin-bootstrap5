@@ -9,6 +9,7 @@
         <NavsTabsExamples />
         <OffcanvasExamples />
         <PopoverExamples />
+        <ScrollSpyExamples />
         <TooltipExamples />
     </div>
 </template>
@@ -25,6 +26,7 @@ import ModalExamples from './components/ModalExamples.vue'
 import NavsTabsExamples from "./components/NavsTabsExamples";
 import OffcanvasExamples from "./components/OffcanvasExamples.vue";
 import PopoverExamples from "./components/PopoverExamples";
+import ScrollSpyExamples from "./components/ScrollSpyExamples";
 import TooltipExamples from "./components/TooltipExamples.vue";
 
 export default {
@@ -38,6 +40,7 @@ export default {
     NavsTabsExamples,
     OffcanvasExamples,
     PopoverExamples,
+    ScrollSpyExamples,
     TooltipExamples
   }
 }

@@ -33,5 +33,5 @@ cd examples/basic/
 npm run serve
 
 
-ver=v0.0.23
+ver=v0.0.25
 gh release create "${ver}" --prerelease --title "Vue3 Plugin Bootstrap 5 ${ver}" --notes "Alpha release"
