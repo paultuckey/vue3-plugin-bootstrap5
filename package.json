@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/paultuckey/vue3-bootstrap5-plugin.git"
+        "url": "git+https://github.com/paultuckey/vue3-plugin-bootstrap5.git"
     },
     "keywords": [
         "vue",
