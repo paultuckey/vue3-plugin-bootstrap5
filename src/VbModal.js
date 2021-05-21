@@ -101,6 +101,7 @@ export default {
                     el.removeEventListener('shown.bs.modal', shownEventHandler)
                     el.removeEventListener('hide.bs.modal', hideEventHandler)
                     el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
+                    modalHiddenFix();
                     //console.log('modal cleanup done', el)
                 });
             }
