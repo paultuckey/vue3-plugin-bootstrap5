@@ -16,9 +16,11 @@ export default {
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('carousel beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Carousel.getInstance(el)
                 if (!ins) ins = new Carousel(el, binding.value)
                 el.$vb.carousel = ins

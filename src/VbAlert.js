@@ -15,8 +15,10 @@ export default {
         }
 
         return {
-            beforeMount() {
+            created() {
                 if (!el.$vb) el.$vb = {};
+            },
+            beforeMount() {
                 let ins = Alert.getInstance(el)
                 if (!ins) ins = new Alert(el, binding.value)
                 el.$vb.alert = ins

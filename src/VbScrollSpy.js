@@ -11,9 +11,11 @@ export default {
             el.dispatchEvent(evt)
         }
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('scrollspy beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = ScrollSpy.getInstance(el)
                 if (!ins) ins = new ScrollSpy(el, binding.value)
                 el.$vb.scrollspy = ins
@@ -28,6 +30,7 @@ export default {
                 let ins = ScrollSpy.getInstance(el)
                 if (ins) ins.dispose()
                 el.$vb.scrollspy = undefined
+                el.removeEventListener('activate.bs.scrollspy', activateEventHandler)
             }
         }
     },

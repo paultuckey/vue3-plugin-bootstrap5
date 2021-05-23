@@ -1,58 +1,63 @@
 
 
 export default {
+
     createIsHandler(Toast, el, binding) {
-        //console.log('toast createIsHandler', el, binding)
+        //console.log('toast createIsHandler')
+
+        let showEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-show-bs-toast', true, true)
+            el.dispatchEvent(evt)
+        }
+        let shownEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-shown-bs-toast', true, true)
+            el.dispatchEvent(evt)
+        }
+        let hideEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hide-bs-toast', true, true)
+            el.dispatchEvent(evt)
+        }
+        let hiddenEventHandler = () => {
+            let evt = document.createEvent('HTMLEvents')
+            evt.initEvent('vb-hidden-bs-toast', true, true)
+            el.dispatchEvent(evt)
+        }
+
         return {
-            beforeMount() {
+            created() {
                 if (!el.$vb) el.$vb = {};
+            },
+            beforeMount() {
+                //console.log('scrollspy beforeMount', el)
                 let ins = Toast.getInstance(el)
                 if (!ins) ins = new Toast(el, binding.value)
-                el.$vb.modal = ins
+                el.$vb.scrollspy = ins
+
+                el.addEventListener('show.bs.toast', showEventHandler)
+                el.addEventListener('shown.bs.toast', shownEventHandler)
+                el.addEventListener('hide.bs.toast', hideEventHandler)
+                el.addEventListener('hidden.bs.toast', hiddenEventHandler)
+            },
+            updated() {
+                let ins = Toast.getInstance(el)
+                if (ins) ins.refresh()
             },
             beforeUnmount() {
                 let ins = Toast.getInstance(el)
                 if (ins) ins.dispose()
+                el.$vb.toast = undefined
+                el.removeEventListener('show.bs.toast', showEventHandler)
+                el.removeEventListener('shown.bs.toast', shownEventHandler)
+                el.removeEventListener('hide.bs.toast', hideEventHandler)
+                el.removeEventListener('hidden.bs.toast', hiddenEventHandler)
             }
         }
     },
 
-    createDismissHandler(Toast, el, binding) {
-        //console.log('toast createDismissHandler', el, binding)
-        let getParentToast = function(el) {
-            let currNode = el
-            while (currNode) {
-                if (currNode && currNode.classList && currNode.classList.contains('toast')) {
-                    break
-                }
-                currNode = currNode.parentNode
-            }
-            return currNode
-        }
-        let clickHandler = function (e) {
-            e.preventDefault()
-            e.stopPropagation()
-            //console.log('dismiss', binding)
-            if (binding.value) {
-                let allowedToClose = binding.value(e)
-                //console.log('allowedToClose', allowedToClose)
-                if (!allowedToClose) return
-            }
-            let toastEl = getParentToast(e.target)
-            if (toastEl) {
-                let ins = Toast.getInstance(toastEl)
-                if (ins) ins.hide();
-            }
-        }
-        return {
-            beforeMount() {
-                el.addEventListener('click', clickHandler);
-            },
-            beforeUnmount() {
-                el.removeEventListener('click', clickHandler);
-            }
-        }
-    }
+
 }
 
 

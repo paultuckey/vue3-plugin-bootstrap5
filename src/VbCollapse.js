@@ -26,9 +26,11 @@ export default {
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('collapse beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Collapse.getInstance(el)
                 if (!ins) ins = new Collapse(el, binding.value)
                 el.$vb.collapse = ins

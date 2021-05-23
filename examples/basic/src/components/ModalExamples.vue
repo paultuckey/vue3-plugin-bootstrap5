@@ -109,7 +109,6 @@
 
           <!-- Modal -->
           <div ref="exampleModalLayering" v-vb-is:modal
-               @vb-hidden-bs-modal="console.log('hi')"
                class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabelLayering" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">

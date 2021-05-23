@@ -11,6 +11,16 @@ let vbPlugin = createVbPlugin({
 
 let app = createApp(App)
 
+app.directive('log-directive-lifecycle', {
+    created: () => console.log('created'),
+    beforeMount: () => console.log('beforeMount'),
+    mounted: () => console.log('mounted'),
+    beforeUpdate: () => console.log('beforeUpdate'),
+    updated: () => console.log('updated'),
+    beforeUnmount: () => console.log('beforeUnmount'),
+    unmounted: () => console.log('unmounted')
+})
+
 app.use(vbPlugin)
 
 app.mount('#app')

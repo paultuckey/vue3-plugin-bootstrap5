@@ -26,9 +26,11 @@ export default {
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             mounted() {  // bs requires we are in the dom before creation
                 //console.log('dropdown beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Dropdown.getInstance(el)
                 if (!ins) ins = new Dropdown(el, binding.value)
                 el.$vb.dropdown = ins

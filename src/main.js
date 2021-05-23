@@ -73,6 +73,8 @@ export function createVbPlugin(bootstrapObjects, options) {
                         handlerConf.handlerObject.createIsHandler) {
                         let handlerIns = handlerConf.handlerObject.createIsHandler(handlerConf.bsObject, el, binding, baseOptions)
                         addHandler('is', el, binding, handlerIns)
+                        //console.log('handlerIns', handlerIns);
+                        if (handlerIns) handlerIns.created()
                     }
                 },
                 beforeMount(el, binding) {
@@ -95,64 +97,6 @@ export function createVbPlugin(bootstrapObjects, options) {
                     let handler = getHandler('is', el, binding, true)
                     if (handler && handler.handlerIns.unmounted) handler.handlerIns.unmounted()
                 },
-            })
-
-            app.directive('vb-toggle', {
-                created(el, binding) {
-                    let handlerConf = handlerConfs[binding.arg]
-                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
-                            handlerConf.handlerObject.createToggleHandler) {
-                        let handlerIns = handlerConf.handlerObject.createToggleHandler(handlerConf.bsObject, el, binding)
-                        addHandler('toggle', el, binding, handlerIns)
-                    }
-                },
-                beforeMount(el, binding) {
-                    //console.log('vb-toggle beforeMount', el, binding)
-                    let handler = getHandler('toggle', el, binding, false)
-                    if (handler) handler.handlerIns.beforeMount()
-                },
-                beforeUnmount(el, binding) {
-                    let handler = getHandler('toggle', el, binding, true)
-                    if (handler) handler.handlerIns.beforeUnmount()
-                }
-            })
-
-            app.directive('vb-dismiss', {
-                created(el, binding) {
-                    let handlerConf = handlerConfs[binding.arg]
-                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
-                        handlerConf.handlerObject.createDismissHandler) {
-                        let handlerIns = handlerConf.handlerObject.createDismissHandler(handlerConf.bsObject, el, binding)
-                        addHandler('dismiss', el, binding, handlerIns)
-                    }
-                },
-                beforeMount(el, binding) {
-                    let handler = getHandler('dismiss', el, binding, false)
-                    if (handler) handler.handlerIns.beforeMount()
-                },
-                beforeUnmount(el, binding) {
-                    let handler = getHandler('dismiss', el, binding, true)
-                    if (handler) handler.handlerIns.beforeUnmount()
-                }
-            })
-
-            app.directive('vb-spy', {
-                created(el, binding) {
-                    let handlerConf = handlerConfs[binding.arg]
-                    if (handlerConf && handlerConf.bsObject && handlerConf.handlerObject &&
-                            handlerConf.handlerObject.createSlideToHandler) {
-                        let handlerIns = handlerConf.handlerObject.createSpyHandler(handlerConf.bsObject, el, binding)
-                        addHandler('scrollspy', el, binding, handlerIns)
-                    }
-                },
-                beforeMount(el, binding) {
-                    let handler = getHandler('scrollspy', el, binding, false)
-                    if (handler) handler.handlerIns.beforeMount()
-                },
-                beforeUnmount(el, binding) {
-                    let handler = getHandler('scrollspy', el, binding, true)
-                    if (handler) handler.handlerIns.beforeUnmount()
-                }
             })
 
         }

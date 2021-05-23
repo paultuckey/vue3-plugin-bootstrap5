@@ -11,6 +11,8 @@
         <PopoverExamples />
         <ScrollSpyExamples />
         <TooltipExamples />
+
+        <LogDirectiveLifecycle />
     </div>
 </template>
 
@@ -28,6 +30,7 @@ import OffcanvasExamples from "./components/OffcanvasExamples.vue";
 import PopoverExamples from "./components/PopoverExamples";
 import ScrollSpyExamples from "./components/ScrollSpyExamples";
 import TooltipExamples from "./components/TooltipExamples.vue";
+import LogDirectiveLifecycle from "./components/LogDirectiveLifecycle";
 
 export default {
   name: 'App',
@@ -41,7 +44,8 @@ export default {
     OffcanvasExamples,
     PopoverExamples,
     ScrollSpyExamples,
-    TooltipExamples
+    TooltipExamples,
+    LogDirectiveLifecycle,
   }
 }
 

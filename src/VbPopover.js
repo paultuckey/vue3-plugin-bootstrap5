@@ -32,9 +32,11 @@ export default {
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('popover beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Popover.getInstance(el)
                 if (!ins) ins = new Popover(el, binding.value)
                 el.$vb.popover = ins

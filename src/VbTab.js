@@ -26,8 +26,10 @@ export default {
         }
 
         return {
-            mounted() {
+            created() {
                 if (!el.$vb) el.$vb = {};
+            },
+            mounted() {
                 let ins = Tab.getInstance(el)
                 if (!ins) ins = new Tab(el, binding.value)
                 el.$vb.tab = ins

@@ -1,3 +1,4 @@
+import {hide as scrollBarHide} from "../../bootstrap/js/src/util/scrollbar";
 
 export default {
 
@@ -6,7 +7,7 @@ export default {
 
         // bootstrap by default doesn't allow layering of modals, fix this when modal is shown by adjusting the zindex
         // of each new modal and it's backdrop
-        const backdropFix = () => {
+        const layeredBackdropFix = () => {
             let modals = document.querySelectorAll('.modal')
             let zIndex = baseOptions.vbModalBaseZindex + (10 * modals.length);
             el.style.zIndex = String(zIndex);
@@ -19,26 +20,20 @@ export default {
                 }
             }, 0);
         }
-        const modalShowFix = () => {
-            // when we have multiple modals open and one is hidden bootstrap will remove the modal-open class
-            // we simply add it again
-            if (!document.body.classList.contains('modal-open')) {
-                document.body.classList.add('modal-open')
-            }
-        }
-        const modalHiddenFix = () => {
+        const layeredModalHiddenFix = () => {
             // when modal is hidden if there are no other modals shown check for 'modal-open' and remove
             let modalsVisible = document.querySelectorAll('.modal.show')
-            if (modalsVisible.length === 0 && document.body.classList.contains('modal-open')) {
-                document.body.classList.remove('modal-open')
+            //console.log('modal cleanup done, modals visible', modalsVisible.length)
+            if (modalsVisible.length > 0 && !document.body.classList.contains('modal-open')) {
+                scrollBarHide()
+                document.body.classList.add('modal-open')
             }
         }
         let showEventHandler = () => {
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-show-bs-modal', true, true)
             el.dispatchEvent(evt)
-            backdropFix()
-            modalShowFix()
+            layeredBackdropFix()
         }
         let shownEventHandler = () => {
             let evt = document.createEvent('HTMLEvents')
@@ -55,13 +50,15 @@ export default {
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-hidden-bs-modal', true, true)
             el.dispatchEvent(evt)
-            modalHiddenFix()
+            layeredModalHiddenFix()
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('modal beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Modal.getInstance(el)
                 if (!ins) ins = new Modal(el, binding.value)
                 el.$vb.modal = ins
@@ -85,27 +82,28 @@ export default {
             },
             beforeUnmount() {
                 //console.log('modal beforeUnmount', el)
-                // run in next loop to ensure that any hide.bs.modal events are already removed and can't call preventDefault
 
-                // TODO if modal is shown or transitioning we need to remove NOW in this JS loop, HOW???
-
+                // ensure that any hide.bs.modal events are already removed and can't call preventDefault
                 el.removeEventListener('show.bs.modal', showEventHandler)
                 el.removeEventListener('shown.bs.modal', shownEventHandler)
                 el.removeEventListener('hide.bs.modal', hideEventHandler)
                 el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
 
                 let ins = Modal.getInstance(el)
-                // we ideally would not call _isShown (private) however we need it closed with no transition
-                if (ins && ins._isShown) {
-                    // Vue removes the element in the next loop, so we need to ensure that the animation doesn't
-                    // run and Bootstrap can cleanup immediately
-                    if (el.classList && el.classList.contains('fade')) el.classList.remove('fade')
-                    ins.hide()
+                // if modal is shown or transitioning we need to remove NOW in this JS loop to prevent the backdrop
+                // being orphaned.  We ideally would not call _isShown (private) however there is no public method to
+                // support this.
+                if (ins && (ins._isShown||ins._isTransitioning)) {
+                    ins._backdrop._config.isAnimated = false;
+                    ins._hideModal()
                 }
                 if (ins) ins.dispose()
                 el.$vb.modal = undefined
                 //console.log('modal cleanup done', el)
-
+            },
+            unmounted() {
+                // stuff not in modal
+                layeredModalHiddenFix()
             }
         }
     },

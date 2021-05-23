@@ -28,9 +28,11 @@ export default {
         }
 
         return {
+            created() {
+                if (!el.$vb) el.$vb = {};
+            },
             beforeMount() {
                 //console.log('offcanvas beforeMount', el)
-                if (!el.$vb) el.$vb = {};
                 let ins = Offcanvas.getInstance(el)
                 if (!ins) ins = new Offcanvas(el, binding.value)
                 el.$vb.offcanvas = ins
