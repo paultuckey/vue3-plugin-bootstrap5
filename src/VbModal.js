@@ -1,4 +1,4 @@
-import {hide as scrollBarHide} from "../../bootstrap/js/src/util/scrollbar";
+import {hide as scrollBarHide, reset as scrollBarReset} from "../../bootstrap/js/src/util/scrollbar";
 
 export default {
 
@@ -27,6 +27,8 @@ export default {
             if (modalsVisible.length > 0 && !document.body.classList.contains('modal-open')) {
                 scrollBarHide()
                 document.body.classList.add('modal-open')
+            } else {
+                scrollBarReset()
             }
         }
         let showEventHandler = () => {
