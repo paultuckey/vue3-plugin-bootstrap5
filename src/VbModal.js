@@ -1,4 +1,3 @@
-import {hide as scrollBarHide, reset as scrollBarReset} from "../../bootstrap/js/src/util/scrollbar";
 
 
 export default {
