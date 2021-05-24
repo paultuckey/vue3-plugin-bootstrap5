@@ -25,7 +25,7 @@ export function createVbPlugin(bootstrapObjects, options) {
             //console.log('createVbPlugins install', app)
             if (!bootstrapObjects) bootstrapObjects = {}
             let baseOptions = Object.assign({
-                vbModalBaseZindex: 1060  // same as $zindex-modal in https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+                vbModalBaseZindex: null  // default null means that5 we won't alter zindex
             }, options)
 
             let handlerConfs = {

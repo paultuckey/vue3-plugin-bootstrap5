@@ -7,6 +7,19 @@ export default {
 
         // bootstrap by default doesn't allow layering of modals, fix this by hiding the first when a second is shown
         // then when the second is hidden, show the first again (hide these show/hide events from listeners)
+        const layeredBackdropFix = () => {
+            let zIndex = baseOptions.vbModalBaseZindex;
+            if (zIndex) {
+                el.style.zIndex = String(zIndex);
+                setTimeout(function () {
+                    // ensure the backdrop is one back in the zindex
+                    let bdEl = document.querySelector('.modal-backdrop')
+                    if (bdEl) {
+                        bdEl.style.zIndex = String(zIndex - 20);
+                    }
+                }, 0);
+            }
+        }
 
         let moveShownModalBehind = () => {
             let modalsVisible = document.querySelectorAll('.modal.show')
@@ -44,7 +57,7 @@ export default {
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-show-bs-modal', true, true)
             el.dispatchEvent(evt)
-            //layeredBackdropFix()
+            layeredBackdropFix()
         }
         let shownEventHandler = () => {
             if (el.$vb.modalIsBehind) {
