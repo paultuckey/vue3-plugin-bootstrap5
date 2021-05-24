@@ -114,7 +114,7 @@ export default {
                 if (ins && (ins._isShown||ins._isTransitioning)) {
                     if (el.classList.contains('fade')) el.classList.remove('fade')  // remove animation
                     ins._backdrop._config.isAnimated = false;  // remove backdrop animation
-                    ins.hide()  // this should immediately hide the modal with no animation
+                    ins._hideModal()  // this should immediately hide the modal with no animation
                 }
                 if (ins) ins.dispose()
                 el.$vb.modal = undefined
