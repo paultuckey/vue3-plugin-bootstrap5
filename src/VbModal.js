@@ -48,7 +48,7 @@ export default {
         }
         let shownEventHandler = () => {
             if (el.$vb.modalIsBehind) {
-                el.$vb.modalHideEventsDisabled = false
+                el.$vb.modalIsBehind = false
                 return;
             }
             let evt = document.createEvent('HTMLEvents')
@@ -72,7 +72,7 @@ export default {
 
         return {
             created() {
-                if (!el.$vb) el.$vb = {modalEventsDisabled: false};
+                if (!el.$vb) el.$vb = {modalIsBehind: false, modalBehind: null};
             },
             beforeMount() {
                 //console.log('modal beforeMount', el)
