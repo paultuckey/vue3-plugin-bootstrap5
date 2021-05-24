@@ -1,63 +1,79 @@
 import {hide as scrollBarHide, reset as scrollBarReset} from "../../bootstrap/js/src/util/scrollbar";
 
+
 export default {
 
     createIsHandler(Modal, el, binding, baseOptions) {
-        //console.log('modal createIsHandler')
+        //console.log('modal createIsHandler', Modal)
 
-        // bootstrap by default doesn't allow layering of modals, fix this when modal is shown by adjusting the zindex
-        // of each new modal and it's backdrop
-        const layeredBackdropFix = () => {
-            let modals = document.querySelectorAll('.modal')
-            let zIndex = baseOptions.vbModalBaseZindex + (10 * modals.length);
-            el.style.zIndex = String(zIndex);
-            setTimeout(function() {
-                // ensure the backdrop is one back in the zindex
-                let bdEl = document.querySelector('.modal-backdrop:not(.vb-modal-stack)')
-                if (bdEl) {
-                    bdEl.style.zIndex = String(zIndex - 1);
-                    bdEl.classList.add('vb-modal-stack')
-                }
-            }, 0);
-        }
-        const layeredModalHiddenFix = () => {
-            // when modal is hidden if there are no other modals shown check for 'modal-open' and remove
+        // bootstrap by default doesn't allow layering of modals, fix this by hiding the first when a second is shown
+        // then when the second is hidden, show the first again (hide these show/hide events from listeners)
+
+        let moveShownModalBehind = () => {
             let modalsVisible = document.querySelectorAll('.modal.show')
-            //console.log('modal cleanup done, modals visible', modalsVisible.length)
-            if (modalsVisible.length > 0 && !document.body.classList.contains('modal-open')) {
-                scrollBarHide()
-                document.body.classList.add('modal-open')
-            } else {
-                scrollBarReset()
+            modalsVisible.forEach((visibleModalEl) => {  // should only be one
+                if (visibleModalEl && visibleModalEl.$vb && visibleModalEl.$vb.modal) {
+                    visibleModalEl.$vb.modalIsBehind = true;
+                    let modalBehind = {wasAnimated: false, backdropWasAnimated: false, el: visibleModalEl}
+                    if (visibleModalEl.classList.contains('fade')) {
+                        modalBehind.wasAnimated = true
+                        visibleModalEl.classList.remove('fade')
+                    }
+                    if (visibleModalEl.$vb.modal._backdrop._config.isAnimated) {
+                        modalBehind.backdropWasAnimated = true
+                        visibleModalEl.$vb.modal._backdrop._config.isAnimated = false
+                    }
+                    visibleModalEl.$vb.modal.hide()
+                    el.$vb.modalBehind = modalBehind;
+                }
+            })
+        }
+        let showModalBehind = () => {
+            //console.log(el.$vb)
+            if (el.$vb.modalBehind) {
+                let modalBehind = el.$vb.modalBehind;
+                modalBehind.el.$vb.modal.show()
+                if (modalBehind.wasAnimated) modalBehind.el.classList.add('fade')
+                if (modalBehind.backdropWasAnimated) modalBehind.el.$vb.modal._backdrop._config.isAnimated = true
+                el.$vb.modalBehind = null
             }
         }
+
         let showEventHandler = () => {
+            if (el.$vb.modalIsBehind) return;
+            moveShownModalBehind();
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-show-bs-modal', true, true)
             el.dispatchEvent(evt)
-            layeredBackdropFix()
+            //layeredBackdropFix()
         }
         let shownEventHandler = () => {
+            if (el.$vb.modalIsBehind) {
+                el.$vb.modalHideEventsDisabled = false
+                return;
+            }
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-shown-bs-modal', true, true)
             el.dispatchEvent(evt)
         }
         let hideEventHandler = (e) => {
+            if (el.$vb.modalIsBehind) return;
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-hide-bs-modal', true, true)
             el.dispatchEvent(evt)
             if (evt.defaultPrevented) e.preventDefault();
         }
         let hiddenEventHandler = () => {
+            if (el.$vb.modalIsBehind) return;
             let evt = document.createEvent('HTMLEvents')
             evt.initEvent('vb-hidden-bs-modal', true, true)
             el.dispatchEvent(evt)
-            layeredModalHiddenFix()
+            showModalBehind();
         }
 
         return {
             created() {
-                if (!el.$vb) el.$vb = {};
+                if (!el.$vb) el.$vb = {modalEventsDisabled: false};
             },
             beforeMount() {
                 //console.log('modal beforeMount', el)
@@ -92,20 +108,21 @@ export default {
                 el.removeEventListener('hidden.bs.modal', hiddenEventHandler)
 
                 let ins = Modal.getInstance(el)
+
                 // if modal is shown or transitioning we need to remove NOW in this JS loop to prevent the backdrop
-                // being orphaned.  We ideally would not call _isShown (private) however there is no public method to
-                // support this.
+                // being orphaned.  We ideally would not call private functions however there is no public method to
+                // support immediate hiding
                 if (ins && (ins._isShown||ins._isTransitioning)) {
-                    ins._backdrop._config.isAnimated = false;
-                    ins._hideModal()
+                    if (el.classList.contains('fade')) el.classList.remove('fade')  // remove animation
+                    ins._backdrop._config.isAnimated = false;  // remove backdrop animation
+                    ins.hide()  // this should immediately hide the modal with no animation
                 }
                 if (ins) ins.dispose()
                 el.$vb.modal = undefined
                 //console.log('modal cleanup done', el)
             },
             unmounted() {
-                // stuff not in modal
-                layeredModalHiddenFix()
+                //
             }
         }
     },
