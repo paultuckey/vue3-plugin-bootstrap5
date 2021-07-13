@@ -10,6 +10,7 @@
         <OffcanvasExamples />
         <PopoverExamples />
         <ScrollSpyExamples />
+        <ToastExamples />
         <TooltipExamples />
 
         <LogDirectiveLifecycle />
@@ -20,16 +21,18 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import AlertExamples from './components/AlertExamples.vue'
+import AlertExamples from './components/AlertExamples'
 import CarouselExamples from './components/CarouselExamples'
 import CollapseExamples from "./components/CollapseExamples";
 import DropdownExamples from "./components/DropdownExamples";
-import ModalExamples from './components/ModalExamples.vue'
+import ModalExamples from './components/ModalExamples'
 import NavsTabsExamples from "./components/NavsTabsExamples";
-import OffcanvasExamples from "./components/OffcanvasExamples.vue";
+import OffcanvasExamples from "./components/OffcanvasExamples";
 import PopoverExamples from "./components/PopoverExamples";
 import ScrollSpyExamples from "./components/ScrollSpyExamples";
-import TooltipExamples from "./components/TooltipExamples.vue";
+import ToastExamples from "./components/ToastExamples";
+import TooltipExamples from "./components/TooltipExamples";
+
 import LogDirectiveLifecycle from "./components/LogDirectiveLifecycle";
 
 export default {
@@ -44,7 +47,9 @@ export default {
     OffcanvasExamples,
     PopoverExamples,
     ScrollSpyExamples,
+    ToastExamples,
     TooltipExamples,
+
     LogDirectiveLifecycle,
   }
 }
