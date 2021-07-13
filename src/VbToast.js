@@ -31,10 +31,10 @@ export default {
                 if (!el.$vb) el.$vb = {};
             },
             beforeMount() {
-                //console.log('scrollspy beforeMount', el)
+                //console.log('toast beforeMount', el)
                 let ins = Toast.getInstance(el)
                 if (!ins) ins = new Toast(el, binding.value)
-                el.$vb.scrollspy = ins
+                el.$vb.toast = ins
 
                 el.addEventListener('show.bs.toast', showEventHandler)
                 el.addEventListener('shown.bs.toast', shownEventHandler)
